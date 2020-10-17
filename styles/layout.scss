@@ -1,9 +1,19 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
+  background-color: #eee;
 
   h1 {
     color: #244751;
+  }
+
+  .btn {
+    width: 6rem;
+    color: #333;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    background-color: white;
+    border: white 5px;
   }
 }
