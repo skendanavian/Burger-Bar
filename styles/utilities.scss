@@ -1,0 +1,25 @@
+// See: https://sass-lang.com/
+
+* {
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+body {
+  background-color: #eee;
+
+  h1 {
+    color: #244751;
+  }
+}
+
+.btn {
+  width: 10rem;
+  color: #333;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  background-color: white;
+  border: white 5px;
+}
