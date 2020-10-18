@@ -3,7 +3,7 @@
   width: 100%;
   position: static;
   overflow: hidden;
-  background-color: #333;
+  background-color: white;
   position: fixed;
   height: 5rem;
 }
@@ -19,14 +19,14 @@
     align-items: center;
 
     i {
-      color: white;
+      color: #333;
       margin-right: 10px;
       padding-bottom: 8px;
     }
   }
 
   .nav-title {
-    color: white;
+    color: #333;
 
     &:hover {
       cursor: pointer;
@@ -35,7 +35,7 @@
   }
 
   .fa-bars {
-    color: white;
+    color: #333;
     &:hover {
       cursor: pointer;
       opacity: 80%;
@@ -49,7 +49,7 @@ main {
   .hero {
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
       url("https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=802&q=80"),
       no-repeat center center/cover;
     background-repeat: no-repeat;

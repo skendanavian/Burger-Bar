@@ -21,11 +21,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
-//I added these routes here simply to view the non-index pages while editing.. Not sure where they should go long term and feel free to move them. 
-router.get("/about", (req, res) => {
-  res.render("about");
-});
   
   return router;
 };

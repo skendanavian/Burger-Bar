@@ -1,6 +1,6 @@
 body {
-  line-height: 30px;
-  background-color: rgb(255, 255, 255);
+  line-height: 25px;
+  background-color: #333;
 }
 
 .navbar {
@@ -8,7 +8,7 @@ body {
   width: 100%;
   position: static;
   overflow: hidden;
-  background-color: #333;
+  background-color: white;
   position: fixed;
   height: 5rem;
 }
@@ -24,14 +24,14 @@ body {
     align-items: center;
 
     i {
-      color: white;
+      color: #333;
       margin-right: 10px;
       padding-bottom: 8px;
     }
   }
 
   .nav-title {
-    color: white;
+    color: #333;
 
     &:hover {
       cursor: pointer;
@@ -40,7 +40,7 @@ body {
   }
 
   .fa-bars {
-    color: white;
+    color: #333;
     &:hover {
       cursor: pointer;
       opacity: 80%;
@@ -51,19 +51,52 @@ body {
 main {
   .container {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    margin-top: 6rem;
+    width: 100vw;
 
-    justify-content: center;
-    align-items: center;
-    margin-top: 8rem;
+    .img-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
 
-    img {
-      align-self: center;
-      margin: 20px 0 0 0;
-      width: 75vw;
-      height: 100%;
-      object-fit: center;
-      flex-grow: 2;
+      .flex-text-container {
+        flex-flow: wrap;
+        background: white;
+        flex-grow: 2;
+        display: flex;
+        flex-direction: column;
+        border: solid #333 3px;
+        border-radius: 20px;
+        justify-content: space-evenly;
+        width: 90%;
+        margin: 1.5rem;
+        padding: 1rem;
+
+        h4 {
+          margin-top: 1rem;
+          text-align: center;
+        }
+
+        p {
+          align-self: center;
+          font-size: 15px;
+          text-align: justify;
+          color: #333;
+          padding: 1rem;
+          margin: 0.5rem;
+        }
+      }
+      img {
+        align-self: center;
+        margin: 20px 0 0 0;
+        width: 100%;
+        height: 100%;
+        object-fit: center center/cover;
+        flex-grow: 2;
+      }
     }
 
     .text-box {
@@ -71,13 +104,6 @@ main {
         color: #333;
         align-self: center;
         text-align: center;
-      }
-      p {
-        font-size: 20px;
-        text-align: justify;
-        color: #333;
-        padding: 2rem;
-        margin: 10px;
       }
     }
   }
