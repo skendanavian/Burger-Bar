@@ -1,11 +1,13 @@
 .navbar {
+  z-index: 999;
   top: 0;
   width: 100%;
   position: static;
   overflow: hidden;
   background-color: white;
   position: fixed;
-  height: 5rem;
+  height: 16vh;
+  border-bottom: solid 2px #333;
 }
 
 .container {

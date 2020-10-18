@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -11,20 +11,51 @@
     />
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <!-- swap this stylesheet for a menu page CSS - copy over navbar style from index.css -->
-    <link rel="stylesheet" href="/styles/index.css" type="text/css" />
-    <script
-      src="https://kit.fontawesome.com/93be37909b.js"
-      crossorigin="anonymous"
-    ></script>
+    <link rel="stylesheet" href="/styles/login-register.css" type="text/css" />
+    <script src="https://kit.fontawesome.com/93be37909b.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <title>Burger Bar || Login</title>
+    <title>Burger Bar || Order Login</title>
   </head>
 
   <body>
-    <header><%- include('./partials/_navbar'); %></header>
+    <header>
+    <%- include('./partials/_navbar'); %>
+    </header>
 
-    <main><h1 style="color: red; margin-top: 100px">LOGIN PAGE</h1></main>
+    <main>
+      <div class="hero">
+        <div class="content">
+          <h1>Order For Pickup</h1>
+          <div class="wrapper">
+            <div id="formContent">
+              <!-- Tabs Titles -->
+          
+              <!-- Icon -->
+             <div class="user-container">
+               <i class="fas fa-user fa-2x"></i>
+               <p>Login To Order</p>
+             </div>
+             
+          
+              <!-- Login Form -->
+              <form class="Login">
+                <input type="email" id="email" class="input-box form-control " name="login" placeholder="email">
+                <input type="password" id="password" class="input-box form-control" name="login" placeholder="password">
+                <input type="submit" class="btn btn-light fadeIn" value="Log In">
+              </form>
+          
+              
+              <div class="formFooter">
+                <a class="underlineHover" href="/register">Create New Account</a>
+              </div>
+          
+            </div>
+          </div>
+           
+        </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

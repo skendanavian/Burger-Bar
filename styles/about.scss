@@ -1,16 +1,21 @@
 body {
   line-height: 25px;
-  background-color: #333;
+  background-color: #333333;
+  background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  color: white;
 }
 
 .navbar {
+  z-index: 999;
   top: 0;
   width: 100%;
   position: static;
   overflow: hidden;
   background-color: white;
   position: fixed;
-  height: 5rem;
+  height: 16vh;
+  border-bottom: solid 2px #333;
 }
 
 .container {
@@ -60,31 +65,33 @@ main {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      margin-top: 8vh;
       width: 100%;
 
       .flex-text-container {
         flex-flow: wrap;
-        background: white;
+        background-color: rgba(51, 51, 51, 0.7);
         flex-grow: 2;
         display: flex;
         flex-direction: column;
         border: solid #333 3px;
         border-radius: 20px;
         justify-content: space-evenly;
-        width: 90%;
+        width: 95%;
         margin: 1.5rem;
         padding: 1rem;
 
         h4 {
           margin-top: 1rem;
           text-align: center;
+          font-weight: 300;
         }
 
         p {
           align-self: center;
           font-size: 15px;
           text-align: justify;
-          color: #333;
+          color: white;
           padding: 1rem;
           margin: 0.5rem;
         }
@@ -92,10 +99,13 @@ main {
       img {
         align-self: center;
         margin: 20px 0 0 0;
-        width: 100%;
+        width: 95%;
         height: 100%;
         object-fit: center center/cover;
         flex-grow: 2;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        opacity: 90%;
       }
     }
 
