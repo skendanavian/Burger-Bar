@@ -1,0 +1,88 @@
+.navbar {
+  z-index: 999;
+  top: 0;
+  width: 100%;
+  position: static;
+  overflow: hidden;
+  background-color: white;
+  position: fixed;
+  height: 16vh;
+  border-bottom: solid 2px #333;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .title-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      color: #333;
+      margin-right: 10px;
+      padding-bottom: 8px;
+    }
+  }
+
+  .nav-title {
+    color: #333;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 80%;
+    }
+  }
+
+  .fa-bars {
+    color: #333;
+    &:hover {
+      cursor: pointer;
+      opacity: 80%;
+    }
+  }
+}
+
+body {
+  background-color: lightsalmon;
+  background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  color: #333;
+}
+
+main {
+  .menu-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 18vh;
+    margin-bottom: 5vh;
+    height: 100%;
+    width: 90vw;
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .menu-item {
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0;
+      border: solid 2px #333;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+
+      p {
+        padding: 10px 0;
+      }
+      .media-body {
+        margin-top: 20px;
+      }
+      img {
+        margin-left: 10px;
+        border-radius: 10px;
+      }
+    }
+  }
+}
