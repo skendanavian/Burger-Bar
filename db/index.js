@@ -16,7 +16,7 @@ const getIncompleteOrders = function (db) {
   ON orders.id = order_items.order_id
   JOIN menu_items
   ON menu_items.id = order_items.menu_item_id
-  WHERE is_complete IS TRUE;
+  WHERE is_complete IS FALSE;
   `);
 }
 
