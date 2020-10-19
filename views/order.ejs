@@ -30,33 +30,37 @@
         <h1>Order For Pickup</h1>
       </section>
       <div class="wrapper">
-        <form action="/order" method="POST">
+        <form action="order" method="POST">
           <ul class="order-items">
             <h4>Menu</h4>
             <br />
             <hr />
+
+            <% for(let item of menuItems) { %>
             <li>
               <div class="menu-item">
                 <input
                   type="checkbox"
                   id="item-selector"
-                  name="item-selector"
+                  name=<%=item.id%>
                 />
-                <img
-                  src="https://source.unsplash.com/random/80x80"
-                  alt="menu-item"
-                />
+              
+                <img src=<%=item.thumbnail_url %> alt="menu-item" />
                 <div class="flex-wrapper">
                   <div>
-                    <h4>Super Burger</h4>
-                    <h5>$7.99</h5>
+                    <h4><%=item.name%></h4>
+                    <h5>$<%=item.price / 100%></h5>
                   </div>
+                
+                  
                   <div class="input-container">
+                    
                     <label for="item-quantity">Quantity:</label>
                     <input
                       type="number"
                       id="item-quantity"
-                      name="quantity"
+                      name=<%=item.id%>
+                      value="1"
                       min="1"
                       max="50"
                     />
@@ -65,69 +69,7 @@
               </div>
               <hr />
             </li>
-            <li>
-              <div class="menu-item">
-                <input
-                  type="checkbox"
-                  id="item-selector"
-                  name="item-selector"
-                />
-                <img
-                  src="https://source.unsplash.com/random/80x80"
-                  alt="menu-item"
-                />
-                <div class="flex-wrapper">
-                  <div>
-                    <h4>Super Burger</h4>
-                    <h5>$7.99</h5>
-                  </div>
-                  <div class="input-container">
-                    <label for="item-quantity">Quantity:</label>
-                    <input
-                      type="number"
-                      id="item-quantity"
-                      name="quantity"
-                      min="1"
-                      max="50"
-                    />
-                  </div>
-                </div>
-              </div>
-              <hr />
-            </li>
-            <li>
-              <div class="menu-item">
-                <input
-                  type="checkbox"
-                  id="item-selector"
-                  name="item-selector"
-                />
-                <img
-                  src="https://source.unsplash.com/random/80x80"
-                  alt="menu-item"
-                />
-                <div class="flex-wrapper">
-                  <div>
-                    <h4>Super Burger</h4>
-                    <h5>$7.99</h5>
-                  </div>
-                  <!-- <div>
-                    <p>Best Burger Ever</p>
-                  </div> -->
-                  <div class="input-container">
-                    <label for="item-quantity">Quantity:</label>
-                    <input
-                      type="number"
-                      id="item-quantity"
-                      name="quantity"
-                      min="1"
-                      max="50"
-                    />
-                  </div>
-                </div>
-              </div>
-              <hr />
-            </li>
+            <% } %>
           </ul>
           <div class="row">
             <button type="submit" class="btn">Submit Order</button>
