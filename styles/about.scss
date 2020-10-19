@@ -1,6 +1,6 @@
 body {
   line-height: 25px;
-  background-color: #333333;
+  background-color: lightseagreen;
   background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   color: white;
@@ -70,7 +70,7 @@ main {
 
       .flex-text-container {
         flex-flow: wrap;
-        background-color: rgba(51, 51, 51, 0.7);
+        background-color: rgba(51, 51, 51, 0.9);
         flex-grow: 2;
         display: flex;
         flex-direction: column;
