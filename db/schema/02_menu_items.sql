@@ -1,4 +1,6 @@
 DROP TABLE IF EXISTS menu_items CASCADE;
+-- Drop widgets table from project skeleton
+DROP TABLE IF EXISTS widgets CASCADE;
 
 CREATE TABLE menu_items (
   id SERIAL PRIMARY KEY NOT NULL,

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/menu-order.css" type="text/css" />
+    <script
+      src="https://kit.fontawesome.com/93be37909b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <title>Burger Bar || Order Online</title>
+  </head>
+
+  <body>
+    <header><%- include('./partials/_navbar'); %></header>
+
+    <main>
+      <section class="menu-container container-fluid">
+        <h1>Order For Pickup</h1>
+      </section>
+      <div class="wrapper">
+        <form action="submit" method="POST">
+          <ul class="order-items">
+            <h4>Menu</h4>
+            <br />
+            <hr />
+            <li>
+              <div class="menu-item">
+                <input
+                  type="checkbox"
+                  id="item-selector"
+                  name="item-selector"
+                />
+                <img
+                  src="https://source.unsplash.com/random/80x80"
+                  alt="menu-item"
+                />
+                <div class="flex-wrapper">
+                  <div>
+                    <h4>Super Burger</h4>
+                    <h5>$7.99</h5>
+                  </div>
+                  <div class="input-container">
+                    <label for="item-quantity">Quantity:</label>
+                    <input
+                      type="number"
+                      id="item-quantity"
+                      name="quantity"
+                      min="1"
+                      max="50"
+                    />
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </li>
+            <li>
+              <div class="menu-item">
+                <input
+                  type="checkbox"
+                  id="item-selector"
+                  name="item-selector"
+                />
+                <img
+                  src="https://source.unsplash.com/random/80x80"
+                  alt="menu-item"
+                />
+                <div class="flex-wrapper">
+                  <div>
+                    <h4>Super Burger</h4>
+                    <h5>$7.99</h5>
+                  </div>
+                  <div class="input-container">
+                    <label for="item-quantity">Quantity:</label>
+                    <input
+                      type="number"
+                      id="item-quantity"
+                      name="quantity"
+                      min="1"
+                      max="50"
+                    />
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </li>
+            <li>
+              <div class="menu-item">
+                <input
+                  type="checkbox"
+                  id="item-selector"
+                  name="item-selector"
+                />
+                <img
+                  src="https://source.unsplash.com/random/80x80"
+                  alt="menu-item"
+                />
+                <div class="flex-wrapper">
+                  <div>
+                    <h4>Super Burger</h4>
+                    <h5>$7.99</h5>
+                  </div>
+                  <!-- <div>
+                    <p>Best Burger Ever</p>
+                  </div> -->
+                  <div class="input-container">
+                    <label for="item-quantity">Quantity:</label>
+                    <input
+                      type="number"
+                      id="item-quantity"
+                      name="quantity"
+                      min="1"
+                      max="50"
+                    />
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </li>
+          </ul>
+          <div class="row">
+            <button type="submit" class="btn">Submit Order</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer><%- include('./partials/_footer'); %></footer>
+  </body>
+</html>
