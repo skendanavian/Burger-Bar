@@ -1,0 +1,1 @@
+const { sendSms } = require('./index');
