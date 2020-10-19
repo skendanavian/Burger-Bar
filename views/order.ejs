@@ -27,65 +27,113 @@
 
     <main>
       <section class="menu-container container-fluid">
-        <h1>Menu</h1>
-        <div class="menu-item container-fluid media p-3">
-          <img
-            src="https://source.unsplash.com/random/80x80"
-            alt="Standard Burger"
-            class="mr-5 mt-8"
-            style="width: 180px"
-          />
-          <div class="media-body">
-            <h4>
-              Standard Burger <small><i> - $7.99</i></small>
-            </h4>
-            <p>
-              The name says it all! <br />
-              Our most popular burger for a reason.<br /><br />
-              <strong>Ingredients:</strong> charbroiled patty, cheese, brioche
-              bun, onions, pickle, ketchup, mustard, and our house made mayo.
-            </p>
-          </div>
-        </div>
-        <div class="menu-item container-fluid media p-3">
-          <img
-            src="https://source.unsplash.com/random/80x80"
-            alt="Standard Burger"
-            class="mr-5 mt-8"
-            style="width: 180px"
-          />
-          <div class="media-body">
-            <h4>
-              Standard Burger <small><i> - $7.99</i></small>
-            </h4>
-            <p>
-              The name says it all! <br />
-              Our most popular burger for a reason.<br /><br />
-              <strong>Ingredients:</strong> charbroiled patty, cheese, brioche
-              bun, onions, pickle, ketchup, mustard, and our house made mayo.
-            </p>
-          </div>
-        </div>
-        <div class="menu-item container-fluid media p-3">
-          <img
-            src="https://source.unsplash.com/random/80x80"
-            alt="Standard Burger"
-            class="mr-5 mt-8"
-            style="width: 180px"
-          />
-          <div class="media-body">
-            <h4>
-              Standard Burger <small><i> - $7.99</i></small>
-            </h4>
-            <p>
-              The name says it all! <br />
-              Our most popular burger for a reason.<br /><br />
-              <strong>Ingredients:</strong> charbroiled patty, cheese, brioche
-              bun, onions, pickle, ketchup, mustard, and our house made mayo.
-            </p>
-          </div>
-        </div>
+        <h1>Order For Pickup</h1>
       </section>
+      <div class="wrapper">
+        <form action="submit" method="POST">
+          <ul class="order-items">
+            <h4>Menu</h4>
+            <br />
+            <hr />
+            <li>
+              <div class="menu-item">
+                <input
+                  type="checkbox"
+                  id="item-selector"
+                  name="item-selector"
+                />
+                <img
+                  src="https://source.unsplash.com/random/80x80"
+                  alt="menu-item"
+                />
+                <div class="flex-wrapper">
+                  <div>
+                    <h4>Super Burger</h4>
+                    <h5>$7.99</h5>
+                  </div>
+                  <div class="input-container">
+                    <label for="item-quantity">Quantity:</label>
+                    <input
+                      type="number"
+                      id="item-quantity"
+                      name="quantity"
+                      min="1"
+                      max="50"
+                    />
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </li>
+            <li>
+              <div class="menu-item">
+                <input
+                  type="checkbox"
+                  id="item-selector"
+                  name="item-selector"
+                />
+                <img
+                  src="https://source.unsplash.com/random/80x80"
+                  alt="menu-item"
+                />
+                <div class="flex-wrapper">
+                  <div>
+                    <h4>Super Burger</h4>
+                    <h5>$7.99</h5>
+                  </div>
+                  <div class="input-container">
+                    <label for="item-quantity">Quantity:</label>
+                    <input
+                      type="number"
+                      id="item-quantity"
+                      name="quantity"
+                      min="1"
+                      max="50"
+                    />
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </li>
+            <li>
+              <div class="menu-item">
+                <input
+                  type="checkbox"
+                  id="item-selector"
+                  name="item-selector"
+                />
+                <img
+                  src="https://source.unsplash.com/random/80x80"
+                  alt="menu-item"
+                />
+                <div class="flex-wrapper">
+                  <div>
+                    <h4>Super Burger</h4>
+                    <h5>$7.99</h5>
+                  </div>
+                  <!-- <div>
+                    <p>Best Burger Ever</p>
+                  </div> -->
+                  <div class="input-container">
+                    <label for="item-quantity">Quantity:</label>
+                    <input
+                      type="number"
+                      id="item-quantity"
+                      name="quantity"
+                      min="1"
+                      max="50"
+                    />
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </li>
+          </ul>
+          <div class="row">
+            <button type="submit" class="btn">Submit Order</button>
+          </div>
+        </form>
+      </div>
     </main>
     <footer><%- include('./partials/_footer'); %></footer>
   </body>
