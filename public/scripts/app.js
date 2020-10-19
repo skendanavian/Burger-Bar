@@ -12,7 +12,9 @@
 
 $(document).ready(() => {
 
-
+$('#dropdown-menu').click((event) => {
+  $('.drop-down').slideToggle();
+});
 
 
 
