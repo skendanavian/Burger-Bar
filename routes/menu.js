@@ -6,7 +6,8 @@ module.exports = (db) => {
 
   router.get('/', (req, response) => {
     getMenu(db).then(res => {
-      response.render("menu");
+      const menuItems = res.rows;
+      response.render("menu", { menuItems });
     });
   });
   return router;
