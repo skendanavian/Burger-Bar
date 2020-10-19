@@ -28,63 +28,27 @@
     <main>
       <section class="menu-container container-fluid">
         <h1>Menu</h1>
-        <div class="menu-item container-fluid media p-3">
-          <img
-            src="https://source.unsplash.com/random/80x80"
-            alt="Standard Burger"
-            class="mr-5 mt-8"
-            style="width: 180px"
-          />
-          <div class="media-body">
-            <h4>
-              Standard Burger <small><i> - $7.99</i></small>
-            </h4>
-            <p>
-              The name says it all! <br />
-              Our most popular burger for a reason.<br /><br />
-              <strong>Ingredients:</strong> charbroiled patty, cheese, brioche
-              bun, onions, pickle, ketchup, mustard, and our house made mayo.
-            </p>
+        <% for (item of menuItems) { %>
+          <div class="menu-item container-fluid media p-3">
+            <img
+              src=<%= item.thumbnail_url %>
+              alt=<%= item.name %>
+              class="mr-5 mt-8"
+              style="width: 180px"
+            />
+            <div class="media-body">
+              <h4>
+                <%= item.name %> <small><i> - $<%= item.price / 100%></i></small>
+              </h4>
+              <p>
+                <%= item.description %><br />
+                <br>
+                <strong>Ingredients:</strong> charbroiled patty, cheese, brioche
+                bun, onions, pickle, ketchup, mustard, and our house made mayo.
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="menu-item container-fluid media p-3">
-          <img
-            src="https://source.unsplash.com/random/80x80"
-            alt="Standard Burger"
-            class="mr-5 mt-8"
-            style="width: 180px"
-          />
-          <div class="media-body">
-            <h4>
-              Standard Burger <small><i> - $7.99</i></small>
-            </h4>
-            <p>
-              The name says it all! <br />
-              Our most popular burger for a reason.<br /><br />
-              <strong>Ingredients:</strong> charbroiled patty, cheese, brioche
-              bun, onions, pickle, ketchup, mustard, and our house made mayo.
-            </p>
-          </div>
-        </div>
-        <div class="menu-item container-fluid media p-3">
-          <img
-            src="https://source.unsplash.com/random/80x80"
-            alt="Standard Burger"
-            class="mr-5 mt-8"
-            style="width: 180px"
-          />
-          <div class="media-body">
-            <h4>
-              Standard Burger <small><i> - $7.99</i></small>
-            </h4>
-            <p>
-              The name says it all! <br />
-              Our most popular burger for a reason.<br /><br />
-              <strong>Ingredients:</strong> charbroiled patty, cheese, brioche
-              bun, onions, pickle, ketchup, mustard, and our house made mayo.
-            </p>
-          </div>
-        </div>
+        <% } %>
       </section>
     </main>
     <footer><%- include('./partials/_footer'); %></footer>
