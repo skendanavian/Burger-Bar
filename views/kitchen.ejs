@@ -28,7 +28,7 @@
     <main>
       <div class="page-container">
         <% for (order in orders) { %>
-          <section <% if (order.status === 'ready') { %> style='background-color: blue'<% } %>>
+          <section class=<%= order.status %>>
             <p>Order Id: <%= order %></p>
             <p>Created at: <%= orders[order].created_at %></p>
             <p>Name: <%= orders[order].first_name + ' ' + orders[order].surname %></p>

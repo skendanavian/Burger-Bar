@@ -1,5 +1,5 @@
 const express = require('express');
-const { getIncompleteOrders, setOrderStatus } = require('../db');
+const { getIncompleteOrders, setOrderStatus, getPhoneForOrder } = require('../db');
 const router  = express.Router();
 
 module.exports = (db) => {
