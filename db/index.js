@@ -27,8 +27,8 @@ const getIncompleteOrders = function (db) {
   ON order_items.menu_item_id = menu_items.id
   JOIN users
   ON orders.user_id = users.id
-  WHERE status = 'confirmed' AND
-        status != 'completed';
+  WHERE status = 'confirmed'
+  ORDER BY orders.created_at DESC;
   `);
 }
 

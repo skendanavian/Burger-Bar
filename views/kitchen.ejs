@@ -35,11 +35,16 @@
             <p>Phone: <%= orders[order].phone %></p>
             <p>Order:
               <% for (item of Object.values(orders[order].order_items)) { %>
-                <p><%= item.menu_item_name %>: x<%= item.quantity %></p>
+                <p>--- <%= item.menu_item_name %>: x<%= item.quantity %></p>
               <% } %>
             </p>
-            <button>Ready for Pickup</button>
-            <button>Completed</button>
+            <% if (orders[order].description) { %>
+              <p>Instructions: <%= orders[order].description %></p>
+            <% } %>
+            <form action="kitchen/<%= order %>" method="POST">
+              <button type='submit' class='btn-primary'>Completed</button>
+            </form>
+              <button>Ready for pickup</button>
           </section>
         <% } %>
       </div>

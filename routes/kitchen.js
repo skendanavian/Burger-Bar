@@ -8,6 +8,7 @@ module.exports = (db) => {
 
     getIncompleteOrders(db).then(res => {
       const incompleteOrderItems = res.rows;
+      console.log(incompleteOrderItems);
       const orders = {};
 
       incompleteOrderItems.forEach(item => {
@@ -31,9 +32,13 @@ module.exports = (db) => {
           }
         });
 
-
       response.render("kitchen", { orders });
-    })
+    });
   });
+
+  router.post('/:orderId', (req, response) => {
+
+  });
+
   return router;
 };
