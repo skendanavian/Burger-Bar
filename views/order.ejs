@@ -35,8 +35,7 @@
             <h4>Menu</h4>
             <br />
             <hr />
-            
-
+          
             <% for(let item of menuItems) { %>
             <li>
               <div class="menu-item">
@@ -45,15 +44,12 @@
                   id="item-selector"
                   name=<%=item.id%>
                 />
-              
                 <img src=<%=item.thumbnail_url %> alt="menu-item" />
                 <div class="flex-wrapper">
                   <div>
                     <h4><%=item.name%></h4>
                     <h5>$<%=item.price / 100%></h5>
                   </div>
-                
-                  
                   <div class="input-container">
                     
                     <label for="item-quantity">Quantity:</label>

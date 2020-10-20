@@ -17,10 +17,28 @@ module.exports = (db) => {
 
   });
 
+  //   const addProperty = function(property) {
+  //     const p = property
+  //     const newProperty = [p.owner_id, p.title, p.description, p.thumbnail_photo_url, p.cover_photo_url, p.cost_per_night, p.street, p.city, p.province, p.post_code, p.country, p.parking_spaces, p.number_of_bathrooms, p.number_of_bedrooms];
+  //     return pool.query(`INSERT INTO properties (
+  //        owner_id, title, description,thumbnail_photo_url, cover_photo_url, cost_per_night, street, city, province, post_code, country, parking_spaces, number_of_bathrooms, number_of_bedrooms)
+  //       VALUES (
+  //       $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`, newProperty).then(res => {
+  //       return res.rows[0];
+  //     })
+  //   }
+  // ß
   router.post('/', (req, response) => {
-    let items = req.body;
-    addOrderItems(items).then(res => {res.render("/")});
-    // console.log(req.body);
+    const ownerId = 1;
+    // assign userId to var from cookies
+
+    const items = req.body;
+    addOrder(db, {userId: 1, ownerId: 1}).then(res => {
+      const newOrderId = res.rows[0];
+      console.log('this is new order', newOrderId);
+      addOrderItems(db, newOrderId, items);
+    }).catch((err) => return err);
+
 
     // insert order into db
 
