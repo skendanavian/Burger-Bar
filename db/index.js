@@ -1,12 +1,60 @@
 
 
-
+/* MENU */
 const getMenu = function(db) {
   return db.query(`
   SELECT *
   FROM menu_items;
   `);
 }
+
+/* KITCHEN RUNNER */
+
+const getIncompleteOrders = function (db) {
+  return db.query(`
+  SELECT  orders.id as order_id,
+          orders.created_at,
+          orders.description,
+          orders.status,
+          menu_items.id AS menu_item_id,
+          menu_items.name AS menu_item_name,
+          order_items.id AS order_item_id,
+          order_items.quantity,
+          users.first_name,
+          users.surname,
+          users.phone
+  FROM order_items
+  JOIN orders
+  ON order_items.order_id = orders.id
+  JOIN menu_items
+  ON order_items.menu_item_id = menu_items.id
+  JOIN users
+  ON orders.user_id = users.id
+  WHERE status IN ('confirmed', 'ready')
+  ORDER BY orders.status ASC, orders.created_at DESC;
+  `);
+}
+
+const getPhoneForOrder = function(db, orderId) {
+  return db.query(`
+  SELECT phone
+  FROM users
+  JOIN orders ON
+  orders.user_id = users.id
+  WHERE orders.id = $1;
+  `, [orderId]);
+}
+
+const setOrderStatus = function (db, orderId, status) {
+  return db.query(`
+  UPDATE orders
+  SET status = $2
+  WHERE orders.id = $1;
+  `, [orderId, status]);
+}
+
+
+/* ORDER */
 
 const addOrder = function(db, ids) {
   // Take in userId, ownerId, items, db
@@ -24,8 +72,8 @@ const addOrderItems = function(db, orderId, items) {
       const values = [items[i][1], orderId, i]
       console.log(values)
       return db.query(`
-    INSERT INTO order_items (quantity, order_id, menu_item_id)
-    VALUES ($1,$2,$3)`, values);
+      INSERT INTO order_items (quantity, order_id, menu_item_id)
+      VALUES ($1,$2,$3)`, values);
     }
   }));
 };
@@ -40,7 +88,7 @@ const getOrder = function(db, orderId) {
        ,menu_items.name as menu_item
        ,order_items.quantity
        ,menu_items.price as unit_price
-       ,orders.description      
+       ,orders.description
 FROM orders
 JOIN order_items
 ON orders.id = order_items.order_id
@@ -68,7 +116,16 @@ const getOrderPrice = function(db, orderId) {
 
 
 
-module.exports = {getMenu, addOrder, addOrderItems, getOrder, getOrderPrice};
+module.exports = {
+  getMenu,
+  addOrder,
+  addOrderItems,
+  getOrder,
+  getOrderPrice,
+  getIncompleteOrders,
+  setOrderStatus,
+  getPhoneForOrder,
+};
 
 
 

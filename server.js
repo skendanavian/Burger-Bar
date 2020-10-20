@@ -35,6 +35,7 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const aboutRoutes = require("./routes/about");
+const kitchenRoutes = require("./routes/kitchen");
 const menuRoutes = require("./routes/menu");
 const orderRoutes = require("./routes/order");
 const loginRoutes = require("./routes/login");
@@ -44,6 +45,7 @@ const logoutRoutes = require("./routes/logout");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/about", aboutRoutes(db));
+app.use("/kitchen", kitchenRoutes(db));
 app.use("/menu", menuRoutes(db));
 app.use("/order", orderRoutes(db));
 app.use("/login", loginRoutes(db));

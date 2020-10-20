@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css">
+    <link rel="stylesheet" href="/styles/kitchen.css" type="text/css" />
+    <script
+      src="https://kit.fontawesome.com/93be37909b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <title>Burger Bar || Kitchen</title>
+  </head>
+
+  <body>
+    <header><%- include('./partials/_navbar'); %></header>
+
+    <main>
+      <div class="page-container">
+        <% for (order in orders) { %>
+          <% console.log(orders[order].status) %>
+          <section class=<%= orders[order].status %>>
+            <p>Order Id: <%= order %></p>
+            <p>Status: <%= orders[order].status %></p>
+            <p>Created at: <%= orders[order].created_at %></p>
+            <p>Name: <%= orders[order].first_name + ' ' + orders[order].surname %></p>
+            <p>Phone: <%= orders[order].phone %></p>
+            <p>Order:
+              <% for (item of Object.values(orders[order].order_items)) { %>
+                <p>--- <%= item.menu_item_name %>: x<%= item.quantity %></p>
+              <% } %>
+            </p>
+            <% if (orders[order].description) { %>
+              <p>Instructions: <%= orders[order].description %></p>
+            <% } %>
+            <form action="kitchen/<%= order %>/ready" method="POST">
+              <button type='submit' class="btn-warning">Ready for pickup</button>
+            </form>
+            <form action="kitchen/<%= order %>/complete" method="POST">
+              <button type='submit' class='btn-primary'>Completed</button>
+            </form>
+          </section>
+        <% } %>
+      </div>
+    </main>
+    <footer><%- include('./partials/_footer'); %></footer>
+  </body>
+</html>
