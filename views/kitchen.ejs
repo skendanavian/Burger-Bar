@@ -28,8 +28,10 @@
     <main>
       <div class="page-container">
         <% for (order in orders) { %>
-          <section class=<%= order.status %>>
+          <% console.log(orders[order].status) %>
+          <section class=<%= orders[order].status %>>
             <p>Order Id: <%= order %></p>
+            <p>Status: <%= orders[order].status %></p>
             <p>Created at: <%= orders[order].created_at %></p>
             <p>Name: <%= orders[order].first_name + ' ' + orders[order].surname %></p>
             <p>Phone: <%= orders[order].phone %></p>

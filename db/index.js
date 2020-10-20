@@ -31,13 +31,13 @@ const getIncompleteOrders = function (db) {
   JOIN users
   ON orders.user_id = users.id
   WHERE status IN ('confirmed', 'ready')
-  ORDER BY orders.created_at DESC;
+  ORDER BY orders.status ASC, orders.created_at DESC;
   `);
 }
 
 const getPhoneForOrder = function(db, orderId) {
   return db.query(`
-  SELECT phone,
+  SELECT phone
   FROM users
   JOIN orders ON
   orders.user_id = users.id

@@ -7,6 +7,10 @@ main {
     height: 100%;
     width: 90vw;
 
+    .ready {
+      background-color: goldenrod;
+    }
+
     section {
       border: 2px solid black;
       p {
