@@ -1,1 +1,2 @@
-const { sendSms } = require('./index');
+const {sendSms} = require('./index');
+

@@ -6,5 +6,9 @@ CREATE TABLE orders (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   description TEXT DEFAULT NULL,
-  is_complete BOOLEAN NOT NULL DEFAULT FALSE
+  status VARCHAR(255) NOT NULL DEFAULT 'pending'
 );
+
+-- status column - 'pending', 'confirmed', 'completed';
+
+-- Mentor suggested looking into CREATE TYPE ENUM 

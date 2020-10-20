@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/menu-order.css" type="text/css" />
+    <script
+      src="https://kit.fontawesome.com/93be37909b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <title>Burger Bar || Confirm Order</title>
+  </head>
+
+  <body>
+    <header><%- include('./partials/_navbar'); %></header>
+
+    <main>
+      <section class="menu-container container-fluid">
+        <h1>Confirm Order</h1>
+      </section>
+      <h1>Hey <%=orderItems. first_name%></h1>
+
+      <table class="confirmation-table">
+          <thead>
+            <tr class="bg-dark text-white">
+              <th scope="col">Quantity
+              </th>
+              <th scope="col">Item
+              </th>
+              <th scope="col">Unit Price</th>
+              <th scope="col">Total Price
+              </th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let item of orderItems) { %>
+             
+            <tr>
+              
+              <td>
+                <%= item.quantity %>
+              </td>
+              <td>
+                <%= item.menu_item %>
+              </td>
+              <td>
+                $<%= item.unit_price / 100%>
+                <!-- BTN from Tiny App - in case we want an edit button at some point
+                  <form method="GET"
+                  action="/urls/:shortUrl">
+                  <button type="submit"
+                    class="btn btn-primary">Edit</button>
+                </form> -->
+
+              </td>
+
+              <td>
+                $<%= item.unit_price * item.quantity / 100%>
+                <!--another edit btn from tiny app
+                   <form method="POST"
+                  action="/urls/:shortUrl/delete">
+                  <button type="submit"
+                    class="btn btn-danger">Delete</button>
+                </form> -->
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+          <div class="row">
+            <button type="submit" class="btn">Cancel Order</button>
+            <button type="submit" class="btn">Confirm Order</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer><%- include('./partials/_footer'); %></footer>
+  </body>
+</html>
