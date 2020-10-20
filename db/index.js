@@ -34,6 +34,16 @@ const getIncompleteOrders = function (db) {
   `);
 }
 
+const getPhoneForOrder = function(db, orderId) {
+  return db.query(`
+  SELECT phone,
+  FROM users
+  JOIN orders ON
+  orders.user_id = users.id
+  WHERE orders.id = $1;
+  `, [orderId]);
+}
+
 const completeOrder = function (db, orderId) {
   return db.query(`
   UPDATE orders
@@ -41,8 +51,6 @@ const completeOrder = function (db, orderId) {
   WHERE orders.id = $1;
   `, [orderId]);
 }
-
-
 
 /* ORDER */
 
