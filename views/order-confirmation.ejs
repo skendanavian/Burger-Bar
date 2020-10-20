@@ -27,9 +27,10 @@
 
     <main>
       <section class="menu-container container-fluid">
-        <h1>Confirm Order</h1>
+        <h1>Please Confirm Your Order</h1>
+        
       </section>
-      <h1>Hey <%=orderItems. first_name%></h1>
+      
 
       <table class="confirmation-table">
           <thead>
@@ -67,7 +68,7 @@
               </td>
 
               <td>
-                $<%= item.unit_price * item.quantity / 100%>
+                $<%= (item.unit_price * item.quantity/100).toFixed(2)%>
                 <!--another edit btn from tiny app
                    <form method="POST"
                   action="/urls/:shortUrl/delete">
@@ -77,6 +78,18 @@
               </td>
             </tr>
             <% } %>
+            <tfoot>
+              <tr class="bg-dark text-white">
+                <th scope="col">Order Total
+                </th>
+                <th scope="col">
+                </th>
+                <th scope="col"></th>
+                <th scope="col">$<%=(orderPrice[0].total_price/100).toFixed(2)%>
+                </th>
+  
+              </tr>
+            </tfoot>
           </tbody>
         </table>
           <div class="row">

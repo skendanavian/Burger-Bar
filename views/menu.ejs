@@ -38,7 +38,7 @@
             />
             <div class="media-body">
               <h4>
-                <%= item.name %> <small><i> - $<%= item.price / 100%></i></small>
+                <%= item.name %> <small><i> - $<%= (item.price / 100).toFixed(2)%></i></small>
               </h4>
               <p>
                 <%= item.description %><br />

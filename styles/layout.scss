@@ -89,10 +89,16 @@
   color: #333;
 }
 
+// Order Confirmation Page
 .confirmation-table{
   background-color: white;
   width: 80vw;
   margin: auto;
+  text-align: justify;
+
+  h1{
+    color:white;
+  }
 
   tr{
     margin: 5px;
@@ -101,5 +107,15 @@
 
   td{
 padding:15px;
+  }
+  thead{
+    th{
+      padding:15px;
+          }
+  }
+  tfoot{
+    th{
+      padding:15px;
+    }
   }
 }
