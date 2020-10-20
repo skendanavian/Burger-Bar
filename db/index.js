@@ -27,12 +27,12 @@ const getIncompleteOrders = function (db) {
   ON order_items.menu_item_id = menu_items.id
   JOIN users
   ON orders.user_id = users.id
-  WHERE is_complete IS FALSE;
+  WHERE status = 'confirmed' AND
+        status != 'completed';
   `);
 }
 
 
-module.exports = { getMenu, getIncompleteOrders };
 const addOrder = function(db, ids) {
   // Take in userId, ownerId, items, db
   const {userId, ownerId} = ids;
@@ -49,8 +49,8 @@ const addOrderItems = function(db, orderId, items) {
       const values = [items[i][1], orderId, i]
       console.log(values)
       return db.query(`
-    INSERT INTO order_items (quantity, order_id, menu_item_id)
-    VALUES ($1,$2,$3)`, values);
+      INSERT INTO order_items (quantity, order_id, menu_item_id)
+      VALUES ($1,$2,$3)`, values);
     }
   }));
 };
@@ -66,22 +66,22 @@ const getOrder = function(db, orderId) {
        ,order_items.quantity
        ,menu_items.price as unit_price
        ,orders.description
-FROM orders
-JOIN order_items
-ON orders.id = order_items.order_id
-JOIN menu_items
-ON menu_items.id = order_items.menu_item_id
-JOIN users
-ON user_id = users.id
-WHERE orders.id = ${orderId}
-GROUP BY orders.id, users.first_name, users.surname, menu_items.name, users.phone, order_items.quantity, menu_items.price
-order by orders.id;
-`);
-}
+       FROM orders
+       JOIN order_items
+       ON orders.id = order_items.order_id
+       JOIN menu_items
+       ON menu_items.id = order_items.menu_item_id
+       JOIN users
+       ON user_id = users.id
+       WHERE orders.id = ${orderId}
+       GROUP BY orders.id, users.first_name, users.surname, menu_items.name, users.phone, order_items.quantity, menu_items.price
+       order by orders.id;
+       `);
+      }
 
 
 
-module.exports = {getMenu, addOrder, addOrderItems, getOrder};
+      module.exports = {getMenu, addOrder, addOrderItems, getOrder,  getIncompleteOrders};
 
 
 
