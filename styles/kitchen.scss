@@ -8,7 +8,10 @@ main {
     width: 90vw;
 
     section {
-      border: 2px solid black
+      border: 2px solid black;
+      p {
+        margin: 0;
+      }
     }
 
   }
