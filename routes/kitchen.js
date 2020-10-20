@@ -9,6 +9,9 @@ module.exports = (db) => {
 
     getIncompleteOrders(db).then(res => {
       const incompleteOrderItems = res.rows;
+      for(items of incompleteOrderItems) {
+        console.log();
+      }
       const orders = {};
 
       incompleteOrderItems.forEach(item => {
