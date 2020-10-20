@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {sendSms} = require('../api/index');
-const {getMenu, addOrder, addOrderItems, getOrder} = require('../db');
+const {getMenu, addOrder, addOrderItems, getOrder, getOrderPrice} = require('../db');
 
 
 module.exports = (db) => {
@@ -18,7 +18,6 @@ module.exports = (db) => {
   router.post('/', (req, response) => {
     const ownerId = 1;
     // assign userId to var from cookies
-
     const items = req.body;
     let newOrderId;
     addOrder(db, {userId: 3, ownerId: 1}).then(res => {
@@ -58,18 +57,22 @@ module.exports = (db) => {
 
   router.get('/:orderId', (req, response) => {
     const orderId = req.params.orderId;
+    let orderItems;
+    let orderPrice;
 
-    getOrder(db, orderId).then(
-      (res) => {
+    getOrder(db, orderId).then((res) => {
+      console.log(res.rows);
+      orderItems = res.rows;
+      getOrderPrice(db, orderId).then((res) => {
         console.log(res.rows);
-        const orderItems = res.rows;
-        response.render('order-confirmation', {orderItems, orderId})
-
+        orderPrice = res.rows;
+        response.render('order-confirmation', {orderItems, orderId, orderPrice})
       }).catch((err) => {
         console.log(err);
         response.status(500).send(err);
       });
 
+    });
   });
 
   return router;

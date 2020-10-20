@@ -27,16 +27,18 @@
 
     <main>
       <section class="menu-container container-fluid">
-        <h1>Confirm Order</h1>
+        <h1>Please Confirm Your Order</h1>
+        
       </section>
-      <h1>Hey <%=orderItems. first_name%></h1>
-
+      
+<div class="confirmation-wrapper">
+  <h4>Order Details</h4>
       <table class="confirmation-table">
           <thead>
             <tr class="bg-dark text-white">
-              <th scope="col">Quantity
-              </th>
               <th scope="col">Item
+              </th>
+              <th scope="col">Quantity
               </th>
               <th scope="col">Unit Price</th>
               <th scope="col">Total Price
@@ -50,13 +52,14 @@
             <tr>
               
               <td>
-                <%= item.quantity %>
-              </td>
-              <td>
                 <%= item.menu_item %>
               </td>
               <td>
-                $<%= item.unit_price / 100%>
+                
+                <%= item.quantity %>
+              </td>
+              <td>
+                $<%= (item.unit_price / 100).toFixed(2)%>
                 <!-- BTN from Tiny App - in case we want an edit button at some point
                   <form method="GET"
                   action="/urls/:shortUrl">
@@ -67,7 +70,7 @@
               </td>
 
               <td>
-                $<%= item.unit_price * item.quantity / 100%>
+                $<%= (item.unit_price * item.quantity/100).toFixed(2)%>
                 <!--another edit btn from tiny app
                    <form method="POST"
                   action="/urls/:shortUrl/delete">
@@ -77,13 +80,39 @@
               </td>
             </tr>
             <% } %>
-          </tbody>
+            <tfoot>
+              <tr class="bg-dark text-white">
+                <th scope="col">Order Total
+                </th>
+                <th scope="col">
+                </th>
+                <th scope="col"></th>
+                <th scope="col">$<%=(orderPrice[0].total_price/100).toFixed(2)%>
+                </th>
+  
+              </tr>
+              
+            </tfoot>
+          </tbody>   
+          <form method="POST" action="submit">
         </table>
-          <div class="row">
-            <button type="submit" class="btn">Cancel Order</button>
-            <button type="submit" class="btn">Confirm Order</button>
+        <div class="wrapper clear">
+        
+          <div class="form-group">
+            <label for="comment">Special Instructions</label>
+            <textarea class="form-control" rows="5" id="comment"></textarea>
           </div>
-        </form>
+          <div class="wrapper clear">
+            <!-- Load custom thankyou page on confirm? -->
+          <button type="/" class="btn">Confirm Order</button>
+          <!-- Redirect to Orders Page -->
+          <a href="/order">Back To Order Form</a>
+          
+        </div>
+      </div>
+    </form>
+      </div>
+       
       </div>
     </main>
     <footer><%- include('./partials/_footer'); %></footer>

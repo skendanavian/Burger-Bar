@@ -89,10 +89,80 @@
   color: #333;
 }
 
+
+// Order Confirmation Page
+
+.confirmation-wrapper{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(169, 169, 169, 0.9));
+  width: 90vw;
+  margin: auto;
+  padding: 10px;
+  border-radius: 10px;
+
+  .wrapper{
+    flex-shrink: 4;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    margin: 15px;
+    width: 100%;
+    
+    .btn{
+      align-self: center;
+      margin: auto;
+      display: block;
+    }
+    a{
+      margin-top: 20px;
+      text-align: center;
+      
+    }
+ 
+   
+  }
+
+  .clear{
+    background-color: transparent;
+  }
+ 
+
+
+ .form-group{
+   text-align: center;
+   width: 40vw;
+ }
+  input{
+    height: 7rem;
+    width: 80%;
+    margin: auto;
+    overflow-wrap: inherit;
+  }
+  h4{
+    color: #333;
+    align-self: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+  }
 .confirmation-table{
   background-color: white;
   width: 80vw;
   margin: auto;
+  text-align: justify;
+  
+ table{
+  overflow-x:auto;
+ }
+  
+
+  h1{
+    color:white;
+  }
 
   tr{
     margin: 5px;
@@ -102,4 +172,15 @@
   td{
 padding:15px;
   }
+  thead{
+    th{
+      padding:15px;
+          }
+  }
+  tfoot{
+    th{
+      padding:15px;
+    }
+  }
+}
 }
