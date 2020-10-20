@@ -26,10 +26,19 @@
     <header><%- include('./partials/_navbar'); %></header>
 
     <main>
-      <div class="container">
-        <% for (order of orders) { %>
-          <p></p>
-
+      <div class="page-container">
+        <% for (order in orders) { %>
+          <section>
+            <p>Order Id: <%= order %></p>
+            <p>Created at: <%= orders[order].created_at %></p>
+            <p>Name: <%= orders[order].first_name + ' ' + orders[order].surname %></p>
+            <p>Phone: <%= orders[order].phone %></p>
+            <p>Order:
+              <% for (item of Object.values(orders[order].order_items)) { %>
+                <p><%= item.menu_item_name %>: x<%= item.quantity %></p>
+              <% } %>
+            </p>
+          </section>
         <% } %>
       </div>
     </main>
