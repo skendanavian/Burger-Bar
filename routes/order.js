@@ -23,11 +23,17 @@ module.exports = (db) => {
     // assign userId to var from cookies
 
     const items = req.body;
+    let newOrderId;
     addOrder(db, {userId: 1, ownerId: 1}).then(res => {
-      const newOrderId = res.rows[0];
+      newOrderId = res.rows[0].id;
       console.log('this is new order', newOrderId);
-      addOrderItems(db, newOrderId, items);
-    }).catch((err) => err);
+      return addOrderItems(db, newOrderId, items);
+    }).then((res) => {
+      response.redirect(`/order/${newOrderId}`);
+    }).catch((err) => {
+      console.log(err);
+      response.status(500).send(err);
+    });
 
 
     ///////Do Not Delete - These are the SMS Commands/////////////////
@@ -43,7 +49,7 @@ module.exports = (db) => {
 
     // insert order into db
     // add order to kitchen runner page
-    // add btn to kitchen runner which marks order as complete or not
+    // add btn to kitchen runner which marks order as complete
     // DB helper - calculate time for order
     // Message customer the estimated time
     // send 
