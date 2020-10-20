@@ -12,9 +12,6 @@ module.exports = (db) => {
       const menuItems = res.rows;
       response.render("order", {menuItems});
     });
-
-
-
   });
 
 
@@ -29,7 +26,7 @@ module.exports = (db) => {
       console.log('this is new order', newOrderId);
       return addOrderItems(db, newOrderId, items);
     }).then((res) => {
-      response.redirect(`/order/${newOrderId}`);
+      response.redirect(`/${newOrderId}`);
     }).catch((err) => {
       console.log(err);
       response.status(500).send(err);
@@ -57,6 +54,8 @@ module.exports = (db) => {
     //kitchen runner page - complete order. -- 
 
   });
+
+  router.get('/:orderId')
 
 
   return router;
