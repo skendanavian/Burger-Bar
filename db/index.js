@@ -116,11 +116,16 @@ const getOrderPrice = function(db, orderId) {
 
 
 
-<<<<<<< HEAD
-      module.exports = {getMenu, addOrder, addOrderItems, getOrder,  getIncompleteOrders, setOrderStatus, getPhoneForOrder };
-=======
-module.exports = {getMenu, addOrder, addOrderItems, getOrder, getOrderPrice};
->>>>>>> master
+module.exports = {
+  getMenu,
+  addOrder,
+  addOrderItems,
+  getOrder,
+  getOrderPrice,
+  getIncompleteOrders,
+  setOrderStatus,
+  getPhoneForOrder,
+};
 
 
 
