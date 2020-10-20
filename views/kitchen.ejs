@@ -28,7 +28,7 @@
     <main>
       <div class="page-container">
         <% for (order in orders) { %>
-          <section>
+          <section <% if (order.status === 'ready') { %> style='background-color: blue'<% } %>>
             <p>Order Id: <%= order %></p>
             <p>Created at: <%= orders[order].created_at %></p>
             <p>Name: <%= orders[order].first_name + ' ' + orders[order].surname %></p>
@@ -41,10 +41,12 @@
             <% if (orders[order].description) { %>
               <p>Instructions: <%= orders[order].description %></p>
             <% } %>
-            <form action="kitchen/<%= order %>" method="POST">
+            <form action="kitchen/<%= order %>/ready" method="POST">
+              <button type='submit' class="btn-warning">Ready for pickup</button>
+            </form>
+            <form action="kitchen/<%= order %>/complete" method="POST">
               <button type='submit' class='btn-primary'>Completed</button>
             </form>
-              <button>Ready for pickup</button>
           </section>
         <% } %>
       </div>

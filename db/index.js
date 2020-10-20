@@ -15,6 +15,7 @@ const getIncompleteOrders = function (db) {
   SELECT  orders.id as order_id,
           orders.created_at,
           orders.description,
+          orders.status,
           menu_items.id AS menu_item_id,
           menu_items.name AS menu_item_name,
           order_items.id AS order_item_id,
@@ -29,7 +30,7 @@ const getIncompleteOrders = function (db) {
   ON order_items.menu_item_id = menu_items.id
   JOIN users
   ON orders.user_id = users.id
-  WHERE status = 'confirmed'
+  WHERE status IN ('confirmed', 'ready')
   ORDER BY orders.created_at DESC;
   `);
 }
@@ -44,13 +45,14 @@ const getPhoneForOrder = function(db, orderId) {
   `, [orderId]);
 }
 
-const completeOrder = function (db, orderId) {
+const setOrderStatus = function (db, orderId, status) {
   return db.query(`
   UPDATE orders
-  SET status = 'completed'
+  SET status = $2
   WHERE orders.id = $1;
-  `, [orderId]);
+  `, [orderId, status]);
 }
+
 
 /* ORDER */
 
@@ -102,7 +104,7 @@ const getOrder = function(db, orderId) {
 
 
 
-      module.exports = {getMenu, addOrder, addOrderItems, getOrder,  getIncompleteOrders, completeOrder};
+      module.exports = {getMenu, addOrder, addOrderItems, getOrder,  getIncompleteOrders, setOrderStatus, getPhoneForOrder };
 
 
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const { getIncompleteOrders, completeOrder } = require('../db');
+const { getIncompleteOrders, setOrderStatus } = require('../db');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -15,6 +15,7 @@ module.exports = (db) => {
         orders[item.order_id] = {
           created_at: item.created_at,
           description: item.description,
+          status: item.status,
           first_name: item.first_name,
           surname: item.surname,
           phone: item.phone,
@@ -36,10 +37,21 @@ module.exports = (db) => {
     });
   });
 
-  router.post('/:orderId', (req, response) => {
+  router.post('/:orderId/complete', (req, response) => {
     const { orderId } = req.params;
 
-    completeOrder(db, orderId).then(
+    setOrderStatus(db, orderId, 'completed').then(
+      response.redirect('/kitchen')
+    ).catch((err) => {
+      console.log(err);
+      response.status(500).send(err);
+    });
+  });
+
+  router.post('/:orderId/ready', (req, response) => {
+    const { orderId } = req.params;
+
+    setOrderStatus(db, orderId, 'ready').then(
       response.redirect('/kitchen')
     ).catch((err) => {
       console.log(err);
