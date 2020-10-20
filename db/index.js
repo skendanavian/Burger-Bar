@@ -8,8 +8,17 @@ const getMenu = function(db) {
   `);
 }
 
+const addOrder = function(db, items) {
+  return console.log('hello')
+}
 
-module.exports = {getMenu};
+const addOrderItems = function() {
+
+
+}
+
+
+module.exports = {getMenu, addOrder, addOrderItems};
 
 
 

@@ -1,26 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const {sendSms} = require('../api/index');
-const {getMenu} = require('../db');
+const {getMenu, addOrder, addOrderItems} = require('../db');
 
 
 module.exports = (db) => {
 
-  router.get('/', (req, res) => {
-
-    getMenu(db).then(menuItems => {
+  router.get('/', (req, response) => {
+    getMenu(db).then(res => {
       //mentor note - implement ejs to handle errors, null data etc
-
-      res.render("order", {menuItems});
+      const menuItems = res.rows;
+      response.render("order", {menuItems});
     });
 
 
 
   });
 
-  router.post('/', (req, res) => {
-
-    console.log(req.body);
+  router.post('/', (req, response) => {
+    let items = req.body;
+    addOrderItems(items).then(res => {res.render("/")});
+    // console.log(req.body);
 
     // insert order into db
 
