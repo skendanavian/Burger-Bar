@@ -1,5 +1,5 @@
 const express = require('express');
-const { getIncompleteOrders } = require('../db');
+const { getIncompleteOrders, completeOrder } = require('../db');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -19,7 +19,7 @@ module.exports = (db) => {
           surname: item.surname,
           phone: item.phone,
           order_items: {}
-        }
+        };
       });
 
       incompleteOrderItems.forEach(item => {
@@ -27,17 +27,24 @@ module.exports = (db) => {
         const { order_items } = orders[order_id];
 
         order_items[order_item_id] = {
-            menu_item_name: item.menu_item_name,
-            quantity: item.quantity
-          }
-        });
+          menu_item_name: item.menu_item_name,
+          quantity: item.quantity
+        };
+      });
 
       response.render("kitchen", { orders });
     });
   });
 
   router.post('/:orderId', (req, response) => {
+    const { orderId } = req.params;
 
+    completeOrder(db, orderId).then(
+      response.redirect('/kitchen')
+    ).catch((err) => {
+      console.log(err);
+      response.status(500).send(err);
+    });
   });
 
   return router;

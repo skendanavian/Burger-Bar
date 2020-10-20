@@ -1,12 +1,14 @@
 
 
-
+/* MENU */
 const getMenu = function(db) {
   return db.query(`
   SELECT *
   FROM menu_items;
   `);
 }
+
+/* KITCHEN RUNNER */
 
 const getIncompleteOrders = function (db) {
   return db.query(`
@@ -32,6 +34,17 @@ const getIncompleteOrders = function (db) {
   `);
 }
 
+const completeOrder = function (db, orderId) {
+  return db.query(`
+  UPDATE orders
+  SET status = 'completed'
+  WHERE orders.id = $1;
+  `, [orderId]);
+}
+
+
+
+/* ORDER */
 
 const addOrder = function(db, ids) {
   // Take in userId, ownerId, items, db
@@ -81,7 +94,7 @@ const getOrder = function(db, orderId) {
 
 
 
-      module.exports = {getMenu, addOrder, addOrderItems, getOrder,  getIncompleteOrders};
+      module.exports = {getMenu, addOrder, addOrderItems, getOrder,  getIncompleteOrders, completeOrder};
 
 
 
