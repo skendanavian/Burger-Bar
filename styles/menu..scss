@@ -23,9 +23,9 @@ main {
       justify-content: center;
       align-items: center;
       margin: 5px 0;
-      border: solid 2px #333;
+      border: solid 1px rgb(224, 157, 0);;
       border-radius: 10px;
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255, 255, 255, 0.94);
 
       p {
         padding: 10px 0;
@@ -49,10 +49,14 @@ main {
   margin: 1vw 5vw;
   border-radius: 10px;
   padding: 5vh 5vw;
-  h4 {
-    text-align: center;
-    color: #333;
-  }
+ 
+}
+h4 {
+  
+  color: rgb(224, 157, 0);
+}
+i{
+  color: #333;
 }
 
 .menu-item {
