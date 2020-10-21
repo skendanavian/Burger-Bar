@@ -57,7 +57,6 @@ const setOrderStatus = function(db, orderId, status) {
 const addOrder = function(db, ids) {
   // Take in userId, ownerId, items, db
   const {userId, ownerId} = ids;
-  console.log('made it to helper', ids);
   return db.query(`
   INSERT INTO orders (user_id, owner_id) VALUES ($1, $2)
   RETURNING *
@@ -68,7 +67,6 @@ const addOrderItems = function(db, orderId, items) {
   return Promise.all(Object.keys(items).map((i) => {
     if (items[i].length === 2) {
       const values = [items[i][1], orderId, i]
-      console.log(values)
       return db.query(`
       INSERT INTO order_items (quantity, order_id, menu_item_id)
       VALUES ($1,$2,$3)`, values);
@@ -125,29 +123,26 @@ GROUP BY  orders.id`
   );
 };
 
-// const estimateOrderTime = function(num, ownerPhone) {
-//   const estimateMsg = 'Your order will be ready in '
-//   if (num < 4) {
-//     estimateMsg += `20 minutes.`;
-//   } else if (num < 10) {
-//     estimateMsg += `${Math.round((num * 6) / 5) * 5} minutes.`;
-//   } else {
-//     return `Please call our store (${ownerPhone}) for a time estimate for pickup.`;
-//   }
-//   return estimateMsg;
+const setOrderDesc = function(db, orderId, description) {
+  return db.query(`
+  UPDATE orders
+  SET description = $1
+  WHERE orders.id = $2;
+  `, [description, orderId]);
+};
 
-// };
+const getOwnerPhone = function(db, orderId) {
+  return db.query(`
+  SELECT phone as owner_phone
+  FROM users
+  JOIN orders ON owner_id = users.id
+  WHERE orders.id = $1 AND is_owner = 'true'
+  GROUP BY owner_id, users.phone;
+  `, [orderId]);
+};
 
-// const renderOrderSms = function(orderItems) {
-//   const firstName = orderItems.first_name;
-//   const lastName = orderItems.last_name;
-//   const
 
-//   for (let item in items) {
 
-//   }
-
-// };
 
 
 
@@ -161,6 +156,8 @@ module.exports = {
   setOrderStatus,
   getPhoneForOrder,
   getTotalItems,
+  setOrderDesc,
+  getOwnerPhone
 };
 
 
