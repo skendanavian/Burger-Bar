@@ -14,11 +14,11 @@ const formatOrderItems = (rows) => {
   rows.forEach((item, i, rows) => {
 
     /* if order has not been pushed already then push it */
-    if(!checkOrderIn(outputOrders, item)) {
+    if (!checkOrderIn(outputOrders, item)) {
       outputOrders.push({
         order_id: item.order_id,
         created_at: item.created_at,
-        description: item.description,
+        description: item.descriptio,
         status: item.status,
         first_name: item.first_name,
         surname: item.surname,
