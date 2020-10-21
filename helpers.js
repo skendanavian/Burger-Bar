@@ -1,37 +1,55 @@
 
+/* helper for formatOrderItems */
+const checkOrderIn = (orders, item) => {
+  return orders.some(order => order.order_id === item.order_id);
+}
+
+
 /* Create array of order objects from db query of order_items */
 /* requires join of users, order_items, orders and menu_items */
 const formatOrderItems = (rows) => {
-  const orders = [];
+  const outputOrders = [];
 
   /* create array of shallow order objects */
-  rows.forEach(item => {
-    orders.push({
-      order_id: item.id,
-      created_at: item.created_at,
-      description: item.description,
-      status: item.status,
-      first_name: item.first_name,
-      surname: item.surname,
-      phone: item.phone,
-      order_items: []
-    });
+  rows.forEach((item, i, rows) => {
+
+    /* if order has not been pushed already then push it */
+    if(!checkOrderIn(outputOrders, item)) {
+      outputOrders.push({
+        order_id: item.order_id,
+        created_at: item.created_at,
+        description: item.description,
+        status: item.status,
+        first_name: item.first_name,
+        surname: item.surname,
+        phone: item.phone,
+        order_items: []
+      });
+    }
   });
 
   /* fill order_items for each order */
   rows.forEach(item => {
 
-    const order = orders.find(({order_id}) => {
-      order_id === item.order_id;
+    const orderForItem = outputOrders.find(order => {
+      return item.order_id === order.order_id;
     });
 
-    order.order_items.push({
+    orderForItem.order_items.push({
+      menu_item_id: item.menu_item_id,
       menu_item_name: item.menu_item_name,
       quantity: item.quantity
     });
   });
 
-  return orders;
+  /* sort menu items in order of their id's to make them should up */
+  /* predictable places ie fries on the bottom */
+  outputOrders.forEach(order => {
+    order.order_items.sort((a, b) => {
+      return a.menu_item_id - b.menu_item_id;
+    })
+  })
+  return outputOrders;
 }
 
 const estimateOrderTime = function(num, ownerPhone) {
