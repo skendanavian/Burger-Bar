@@ -10,7 +10,7 @@ main {
     display: flex;
     flex-direction: column;
     margin-top: 18vh;
-    margin-bottom: 5vh;
+    margin-bottom: 2vh;
     height: 100%;
     width: 90vw;
 
@@ -101,6 +101,11 @@ i{
 #item-selector {
   margin-left: 12px;
   margin-right: 5px;
+  //enlarge checkbox
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
 
   label {
     width: 30px;
@@ -143,7 +148,8 @@ h5 {
 }
 
 #item-selector{
-  margin:auto;
+  margin:0 auto 10px auto;
+  padding-bottom: 20px;
 }
 
 
