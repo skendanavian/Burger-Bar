@@ -11,6 +11,10 @@ main {
       background-color: goldenrod;
     }
 
+    .invisible {
+      visibility: hidden;
+    }
+
     section {
       border: 2px solid black;
       p {

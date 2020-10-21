@@ -27,27 +27,30 @@
 
     <main>
       <div class="page-container">
-        <% for (order in orders) { %>
-          <section class=<%= orders[order].status %>>
-            <p>Order Id: <%= order %></p>
-            <p>Status: <%= orders[order].status %></p>
-            <p>Created at: <%= orders[order].created_at %></p>
-            <p>Name: <%= orders[order].first_name + ' ' + orders[order].surname %></p>
-            <p>Phone: <%= orders[order].phone %></p>
+        <% for (order of orders) { %>
+          <section class=<%= order.status %>>
+            <p>Order Id: <%= order.order_id %></p>
+            <p>Status: <%= order.status %></p>
+            <p>Created at: <%= order.created_at %></p>
+            <p>Name: <%= order.first_name + ' ' + order.surname %></p>
+            <p>Phone: <%= order.phone %></p>
             <p>Order:
-              <% for (item of Object.values(orders[order].order_items)) { %>
+              <% for (item of Object.values(order.order_items)) { %>
                 <p>--- <%= item.menu_item_name %>: x<%= item.quantity %></p>
               <% } %>
             </p>
-            <% if (orders[order].description) { %>
-              <p>Instructions: <%= orders[order].description %></p>
+            <% if (order.description) { %>
+              <p>Instructions: <%= order.description %></p>
             <% } %>
-            <form action="kitchen/<%= order %>/ready" method="POST">
+            <% if (order.status === 'confirmed') { %>
+            <form action="kitchen/<%= order.order_id %>/ready" method="POST">
               <button type='submit' class="btn-warning">Ready for pickup</button>
             </form>
-            <form action="kitchen/<%= order %>/complete" method="POST">
+            <% } else { %>
+            <form action="kitchen/<%= order.order_id %>/complete" method="POST">
               <button type='submit' class='btn-primary'>Completed</button>
             </form>
+            <% } %>
           </section>
         <% } %>
       </div>
