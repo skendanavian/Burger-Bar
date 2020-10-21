@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {sendSms} = require('../api/index');
-const {getMenu, addOrder, addOrderItems, getOrder, getOrderPrice, getTotalItems, setOrderStatus, getPhoneForOrder, estimateOrderTime, renderOrderSms} = require('../db');
+const {getMenu, addOrder, addOrderItems, getOrder, getOrderPrice, getTotalItems, setOrderStatus, getPhoneForOrder} = require('../db');
+const {estimateOrderTime, renderOrderSms} = require('../helpers');
 
 
 module.exports = (db) => {
@@ -63,23 +64,26 @@ module.exports = (db) => {
     Promise.all([totalItems, itemList, orderStatus]).then(values => {
       console.log('orderitems', values[0].rows)
       console.log('itemList', values[1].rows)
-      console.log('orderStatus', values[2].rows)
+
+
       const numOfItems = values[0].rows[0].quantity_of_items;
-      const orderInfo = values[0].rows;
       const orderTime = estimateOrderTime(numOfItems);
+      const orderInfo = values[1].rows;
+
       const userName = orderInfo[0].first_name;
       const userMsg = `Hey ${userName}! Thanks for ordering from Burger Bar. ${orderTime}.`;
       const userPhone = orderInfo[0].phone;
-
       /* DO NOT DELETE - SMS FUNCTIONALITY
-       console.log(sendSms(userMsg, userPhone)); */
+      sendSms(userMsg, userPhone); */
 
-      // const customer 
-      const msgToOwner = renderOrderSms(orderInfo, orderId);
+      const ownerMsg = renderOrderSms(orderInfo, orderId);
+      /* DO NOT DELETE - SMS FUNCTIONALITY
+      sendSms(ownerMsg, ownerPhone); */
       console.log(numOfItems);
       //call calculate order time
       // estimateOrderTime
       //get customer and user phone number
+      response.redirect('/');
 
     }).catch((err) => {
       console.log(err);

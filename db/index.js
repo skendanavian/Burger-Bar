@@ -1,5 +1,3 @@
-e
-
 /* MENU */
 const getMenu = function(db) {
   return db.query(`
