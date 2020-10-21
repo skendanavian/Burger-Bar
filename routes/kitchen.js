@@ -10,8 +10,9 @@ module.exports = (db) => {
   router.get('/', (req, response) => {
 
     getIncompleteOrders(db).then(res => {
+
       const orders = formatOrderItems(res.rows);
-      const ordersFormattedDate = orders.map(order => {
+      orders.forEach(order => {
         order.created_at = date.format(order.created_at, 'ddd hh:mm A');
         return order;
       });
