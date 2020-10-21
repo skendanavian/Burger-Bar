@@ -58,7 +58,6 @@ module.exports = (db) => {
   router.post('/:orderId/confirmation', (req, response) => {
     const orderId = req.params.orderId;
     const orderDescription = req.body.description
-    console.log('This is the text box', req.body.description)
     const ownerPhone = getOwnerPhone(db, orderId);
     const setDescription = setOrderDesc(db, orderId, orderDescription)
     const orderStatus = setOrderStatus(db, orderId, 'confirmed');
@@ -66,10 +65,6 @@ module.exports = (db) => {
     const itemList = getOrder(db, orderId);
 
     Promise.all([totalItems, itemList, orderStatus, setDescription, ownerPhone]).then(values => {
-      console.log('orderitems', values[0].rows)
-      console.log('itemList', values[1].rows)
-
-
       const numOfItems = values[0].rows[0].quantity_of_items;
       const orderInfo = values[1].rows;
       const ownerPhone = values[4].rows[0].owner_phone;
