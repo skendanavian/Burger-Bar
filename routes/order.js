@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {sendSms} = require('../api/index');
-const {getMenu, addOrder, addOrderItems, getOrder, getOrderPrice, getTotalItems, setOrderStatus, getPhoneForOrder, estimateOrderTime} = require('../db');
+const {getMenu, addOrder, addOrderItems, getOrder, getOrderPrice, getTotalItems, setOrderStatus, getPhoneForOrder, estimateOrderTime, renderOrderSms} = require('../db');
 
 
 module.exports = (db) => {
@@ -60,13 +60,25 @@ module.exports = (db) => {
     const totalItems = getTotalItems(db, orderId);
     const itemList = getOrder(db, orderId);
 
-
-
     Promise.all([totalItems, itemList, orderStatus]).then(values => {
       console.log('orderitems', values[0].rows)
       console.log('itemList', values[1].rows)
       console.log('orderStatus', values[2].rows)
+      const numOfItems = values[0].rows[0].quantity_of_items;
+      const orderInfo = values[0].rows;
+      const orderTime = estimateOrderTime(numOfItems);
+      const userName = orderInfo[0].first_name;
+      const userMsg = `Hey ${userName}! Thanks for ordering from Burger Bar. ${orderTime}.`;
+      const userPhone = orderInfo[0].phone;
+
+      /* DO NOT DELETE - SMS FUNCTIONALITY
+       console.log(sendSms(userMsg, userPhone)); */
+
+      // const customer 
+      const msgToOwner = renderOrderSms(orderInfo, orderId);
+      console.log(numOfItems);
       //call calculate order time
+      // estimateOrderTime
       //get customer and user phone number
 
     }).catch((err) => {

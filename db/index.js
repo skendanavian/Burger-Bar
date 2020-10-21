@@ -1,4 +1,4 @@
-
+e
 
 /* MENU */
 const getMenu = function(db) {
@@ -127,6 +127,30 @@ GROUP BY  orders.id`
   );
 };
 
+// const estimateOrderTime = function(num, ownerPhone) {
+//   const estimateMsg = 'Your order will be ready in '
+//   if (num < 4) {
+//     estimateMsg += `20 minutes.`;
+//   } else if (num < 10) {
+//     estimateMsg += `${Math.round((num * 6) / 5) * 5} minutes.`;
+//   } else {
+//     return `Please call our store (${ownerPhone}) for a time estimate for pickup.`;
+//   }
+//   return estimateMsg;
+
+// };
+
+// const renderOrderSms = function(orderItems) {
+//   const firstName = orderItems.first_name;
+//   const lastName = orderItems.last_name;
+//   const
+
+//   for (let item in items) {
+
+//   }
+
+// };
+
 
 
 module.exports = {
@@ -138,7 +162,7 @@ module.exports = {
   getIncompleteOrders,
   setOrderStatus,
   getPhoneForOrder,
-  getTotalItems
+  getTotalItems,
 };
 
 
