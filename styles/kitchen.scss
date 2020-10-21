@@ -4,6 +4,8 @@ main {
     flex-direction: column;
     margin-top: 18vh;
     margin-bottom: 5vh;
+    margin-left: auto;
+    margin-right: auto;
     height: 100%;
     width: 90vw;
 
@@ -11,15 +13,25 @@ main {
       background-color: goldenrod;
     }
 
-    .invisible {
-      visibility: hidden;
-    }
-
     section {
       border: 2px solid black;
+      h1 {
+        margin: 0.5em;
+      }
       p {
         margin: 0;
       }
+      div {
+        display: flex;
+
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          margin-left: auto;
+        }
+      }
+
     }
 
   }

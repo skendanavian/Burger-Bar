@@ -1,4 +1,5 @@
 const express = require('express');
+const date = require('date-and-time');
 const {formatOrderItems} = require('../helpers');
 const {sendSms} = require('../api');
 const {getIncompleteOrders, setOrderStatus, getPhoneForOrder} = require('../db');
@@ -10,6 +11,10 @@ module.exports = (db) => {
 
     getIncompleteOrders(db).then(res => {
       const orders = formatOrderItems(res.rows);
+      const ordersFormattedDate = orders.map(order => {
+        order.created_at = date.format(order.created_at, 'ddd hh:mm A');
+        return order;
+      });
       response.render("kitchen", {orders});
     });
   });

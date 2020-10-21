@@ -95,10 +95,10 @@ module.exports = (db) => {
 
  ///////Do Not Delete - These are the SMS Commands/////////////////
 
-    //Send Order Info to Restaurant 
+    //Send Order Info to Restaurant
     // console.log(sendSms('Order Info', '+16479861087'));
 
-    //calculate order time and send to customer 
+    //calculate order time and send to customer
     // console.log(sendSms('Order Info', 'customerNumber'));
 
     ///////////////////////////////////////////////////////////////
