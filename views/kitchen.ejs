@@ -27,35 +27,62 @@
 
     <main>
       <div class="page-container">
-        <% for (order of orders) { %>
-          <section class=<%= order.status %>>
-            <div>
-              <h1><%= order.order_id %></h1>
-              <div>
-                <% for (item of Object.values(order.order_items)) { %>
-                  <h4><%= item.menu_item_name %>: x<%= item.quantity %></h4>
-                <% } %>
-                </div>
-            </div>
-            <div>
-              <p><%= order.created_at %> | </p>
-              <p><%= order.first_name + ' ' + order.surname %> | </p>
-              <p><%= order.phone %></p>
-            </div>
-            <% if (order.description) { %>
-              <p>Instructions: <%= order.description %></p>
-            <% } %>
+        <section>
+          <H1>Online Orders</H1>
+          <% for (order of orders) { %>
             <% if (order.status === 'confirmed') { %>
-            <form action="kitchen/<%= order.order_id %>/ready" method="POST">
-              <button type='submit' class="btn btn-warning">Ready for pickup</button>
-            </form>
-            <% } else { %>
-            <form action="kitchen/<%= order.order_id %>/complete" method="POST">
-              <button type='submit' class='btn btn-primary'>Completed</button>
-            </form>
+              <article class='<%= order.status %>'>
+                <div class="metadata">
+                  <p><%= order.created_at %></p>
+                  <p><%= order.first_name + ' ' + order.surname %></p>
+                  <p><%= order.phone %></p>
+                </div>
+                <div>
+                  <h1><%= order.order_id %></h1>
+                  <div>
+                    <% for (item of Object.values(order.order_items)) { %>
+                      <h4><%= item.menu_item_name %>: x<%= item.quantity %></h4>
+                    <% } %>
+                    </div>
+                </div>
+                <% if (order.description) { %>
+                  <h5><%= order.description %></h5>
+                <% } %>
+                  <form action="kitchen/<%= order.order_id %>/ready" method="POST">
+                    <button type='submit' class="btn btn-warning btn-block">Ready for pickup</button>
+                  </form>
+                </article>
+              <% } %>
             <% } %>
-          </section>
-        <% } %>
+        </section>
+        <section>
+          <H1>Ready to be picked up</H1>
+          <% for (order of orders) { %>
+            <% if (order.status === 'ready') { %>
+              <article class='ready'>
+                <div class="metadata">
+                  <p><%= order.created_at %></p>
+                  <p><%= order.first_name + ' ' + order.surname %></p>
+                  <p><%= order.phone %></p>
+                </div>
+                <div>
+                  <h1><%= order.order_id %></h1>
+                  <div>
+                    <% for (item of Object.values(order.order_items)) { %>
+                      <h4><%= item.menu_item_name %>: x<%= item.quantity %></h4>
+                      <% } %>
+                    </div>
+                  </div>
+                  <% if (order.description) { %>
+                    <h5><%= order.description %></h5>
+                <% } %>
+                <form action="kitchen/<%= order.order_id %>/complete" method="POST">
+                  <button type='submit' class='btn btn-primary btn-block'>Completed</button>
+                </form>
+              </article>
+            <% } %>
+          <% } %>
+        </section>
       </div>
     </main>
     <footer><%- include('./partials/_footer'); %></footer>
