@@ -30,7 +30,7 @@
     i {
       color: rgb(224, 157, 0);
       margin-right: 10px;
-      padding-bottom: 8px;
+      padding-bottom: 11px;
     }
   }
 
@@ -203,7 +203,14 @@ padding:15px;
   color: #333;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 475px) {
+  .container .title-box i {
+ display:none;
+  }
+
+  main .hero .content .btn-container .btn {
+    display: block;
+  }
   body {
     background-color: lightblue;
   }
