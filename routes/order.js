@@ -92,3 +92,16 @@ module.exports = (db) => {
   return router;
 };
 
+<<<<<<< HEAD
+=======
+
+ ///////Do Not Delete - These are the SMS Commands/////////////////
+
+    //Send Order Info to Restaurant
+    // console.log(sendSms('Order Info', '+16479861087'));
+
+    //calculate order time and send to customer
+    // console.log(sendSms('Order Info', 'customerNumber'));
+
+    ///////////////////////////////////////////////////////////////
+>>>>>>> 6e79908e8cec1930f3b63b6a0d64721b5f2682c8

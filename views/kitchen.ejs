@@ -27,28 +27,33 @@
 
     <main>
       <div class="page-container">
-        <% for (order in orders) { %>
-          <% console.log(orders[order].status) %>
-          <section class=<%= orders[order].status %>>
-            <p>Order Id: <%= order %></p>
-            <p>Status: <%= orders[order].status %></p>
-            <p>Created at: <%= orders[order].created_at %></p>
-            <p>Name: <%= orders[order].first_name + ' ' + orders[order].surname %></p>
-            <p>Phone: <%= orders[order].phone %></p>
-            <p>Order:
-              <% for (item of Object.values(orders[order].order_items)) { %>
-                <p>--- <%= item.menu_item_name %>: x<%= item.quantity %></p>
-              <% } %>
-            </p>
-            <% if (orders[order].description) { %>
-              <p>Instructions: <%= orders[order].description %></p>
+        <% for (order of orders) { %>
+          <section class=<%= order.status %>>
+            <div>
+              <h1><%= order.order_id %></h1>
+              <div>
+                <% for (item of Object.values(order.order_items)) { %>
+                  <h4><%= item.menu_item_name %>: x<%= item.quantity %></h4>
+                <% } %>
+                </div>
+            </div>
+            <div>
+              <p><%= order.created_at %> | </p>
+              <p><%= order.first_name + ' ' + order.surname %> | </p>
+              <p><%= order.phone %></p>
+            </div>
+            <% if (order.description) { %>
+              <p>Instructions: <%= order.description %></p>
             <% } %>
-            <form action="kitchen/<%= order %>/ready" method="POST">
-              <button type='submit' class="btn-warning">Ready for pickup</button>
+            <% if (order.status === 'confirmed') { %>
+            <form action="kitchen/<%= order.order_id %>/ready" method="POST">
+              <button type='submit' class="btn btn-warning">Ready for pickup</button>
             </form>
-            <form action="kitchen/<%= order %>/complete" method="POST">
-              <button type='submit' class='btn-primary'>Completed</button>
+            <% } else { %>
+            <form action="kitchen/<%= order.order_id %>/complete" method="POST">
+              <button type='submit' class='btn btn-primary'>Completed</button>
             </form>
+            <% } %>
           </section>
         <% } %>
       </div>
