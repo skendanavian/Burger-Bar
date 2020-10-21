@@ -212,9 +212,31 @@ padding:15px;
   main .hero .content .btn-container .btn {
     display: block;
   }
-  body {
-    background-color: lightblue;
+.menu-item  {
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+
+
+
+
+.flex-wrapper{
+  flex-direction: column;
+}
+.container-fluid{
+  flex-direction: column;
+}
   }
+
+  .mr-5{
+    margin-right: 0;
+  }
+
+  .wrapper{
+    margin: 10px;
+  }
+ 
 }
 
 @media only screen and (min-width: 780px){
