@@ -34,13 +34,12 @@ module.exports = (db) => {
     const {orderId} = req.params;
 
     getPhoneForOrder(db, orderId).then(res => {
-      const phone = res.rows[ 0 ].phone;
-      const msg = 'Your order is ready to be picked up!';
+      const phone = res.rows[0].phone;
+      const msg = 'Your Burger Bar order is ready to be picked up!';
       console.log(`Sent '${msg}' to ${phone}!`);
       /* KEEP! sms functionality to be uncommented*/
       // sendSms(msg, phone);
     }
-
     );
 
     setOrderStatus(db, orderId, 'ready').then(

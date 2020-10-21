@@ -40,10 +40,8 @@ module.exports = (db) => {
     let orderPrice;
 
     getOrder(db, orderId).then((res) => {
-      console.log(res.rows);
       orderItems = res.rows;
       getOrderPrice(db, orderId).then((res) => {
-        console.log(res.rows);
         orderPrice = res.rows;
         response.render('order-confirmation', {orderItems, orderId, orderPrice})
       }).catch((err) => {
@@ -74,34 +72,24 @@ module.exports = (db) => {
       const userMsg = `Hey ${userName}! Thanks for ordering from Burger Bar. ${orderTime}.`;
       const userPhone = orderInfo[0].phone;
 
-      // DO NOT DELETE - SMS FUNCTIONALITY
+      // DO NOT DELETE - SMS FUNCTIONALITY FOR CUSTOMER ORDER TIME
       // sendSms(userMsg, userPhone);
 
       const ownerMsg = renderOrderSms(orderInfo, orderId);
 
-      // DO NOT DELETE - SMS FUNCTIONALITY
+      // DO NOT DELETE - SMS FUNCTIONALITY FOR ORDER TO OWNER
       // sendSms(ownerMsg, ownerPhone);
-
-      response.render('index');
-
-    }).catch((err) => {
-      console.log(err);
-      response.status(500).send(err);
+      getOrderPrice(db, orderId).then((res) => {
+        console.log(res.rows)
+        console.log(orderTime)
+        const orderPrice = res.rows;
+        response.render('order-receipt', {orderInfo, numOfItems, orderPrice, orderTime});
+      }).catch((err) => {
+        console.log(err);
+        response.status(500).send(err);
+      });
     });
   });
   return router;
 };
 
-<<<<<<< HEAD
-=======
-
- ///////Do Not Delete - These are the SMS Commands/////////////////
-
-    //Send Order Info to Restaurant
-    // console.log(sendSms('Order Info', '+16479861087'));
-
-    //calculate order time and send to customer
-    // console.log(sendSms('Order Info', 'customerNumber'));
-
-    ///////////////////////////////////////////////////////////////
->>>>>>> 6e79908e8cec1930f3b63b6a0d64721b5f2682c8
