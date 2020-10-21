@@ -31,7 +31,7 @@ const getIncompleteOrders = function (db) {
   JOIN users
   ON orders.user_id = users.id
   WHERE status IN ('confirmed', 'ready')
-  ORDER BY orders.status ASC, orders.created_at DESC;
+  ORDER BY orders.status ASC, orders.created_at;
   `);
 }
 

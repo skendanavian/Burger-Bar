@@ -1,7 +1,7 @@
 const express = require('express');
 const { sendSms } = require('../api');
 const { getIncompleteOrders, setOrderStatus, getPhoneForOrder } = require('../db');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
 
@@ -9,13 +9,16 @@ module.exports = (db) => {
 
     getIncompleteOrders(db).then(res => {
       const incompleteOrderItems = res.rows;
-      for(items of incompleteOrderItems) {
-        console.log();
-      }
       const orders = {};
 
+
+      for (item of incompleteOrderItems) {
+        console.log(item.order_id, item.created_at, item.status);
+      }
+
+      /* fill top level template vars obj */
       incompleteOrderItems.forEach(item => {
-        orders[item.order_id] = {
+        orders[ item.order_id ] = {
           created_at: item.created_at,
           description: item.description,
           status: item.status,
@@ -26,15 +29,20 @@ module.exports = (db) => {
         };
       });
 
+      /* add menu items */
       incompleteOrderItems.forEach(item => {
         const { order_id, order_item_id } = item;
-        const { order_items } = orders[order_id];
+        const { order_items } = orders[ order_id ];
 
-        order_items[order_item_id] = {
+        order_items[ order_item_id ] = {
           menu_item_name: item.menu_item_name,
           quantity: item.quantity
         };
       });
+
+      for (item in orders) {
+        console.log('vars', item, orders[ item ].created_at, orders[ item ].status);
+      }
 
       response.render("kitchen", { orders });
     });
@@ -55,7 +63,7 @@ module.exports = (db) => {
     const { orderId } = req.params;
 
     getPhoneForOrder(db, orderId).then(res => {
-      const phone = res.rows[0].phone;
+      const phone = res.rows[ 0 ].phone;
       const msg = 'Your order is ready to be picked up!';
       console.log(`Sent '${msg}' to ${phone}!`);
       /* KEEP! sms functionality to be uncommented*/
