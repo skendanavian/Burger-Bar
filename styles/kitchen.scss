@@ -1,3 +1,9 @@
+$primary-color: #333333;
+
+$breakpoint-tablet: 800px;
+$breakpoint-phone: 450px;
+
+
 main {
   .page-container {
     display: flex;
@@ -8,31 +14,67 @@ main {
     margin-right: auto;
     height: 100%;
     width: 90vw;
-
-    .ready {
-      background-color: goldenrod;
-    }
-
-    section {
-      border: 2px solid black;
-      h1 {
-        margin: 0.5em;
-      }
-      p {
-        margin: 0;
-      }
-      div {
-        display: flex;
-
-        div {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          margin-left: auto;
-        }
-      }
-
-    }
-
   }
 }
+
+article {
+  border-color: $primary-color;
+  border-width: 3px;
+  margin: 0.5em;
+  padding: 0.2em;
+
+ div {
+    display: flex;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-left: auto;
+    }
+  }
+
+}
+
+h1, h4 {
+  margin-left: 0.5em;
+}
+
+.ready {
+  background-color: goldenrod;
+}
+
+section {
+  min-width: 40vw ;
+}
+
+.metadata {
+  display: flex;
+  justify-content: space-around;
+}
+
+.metadata > p {
+  margin-left: auto;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  main > .page-container {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: $breakpoint-phone) {
+  .metadata {
+    flex-direction: column;
+  }
+
+  .metadata > p {
+    justify-content: space-evenly;
+  }
+}
+
+
+
