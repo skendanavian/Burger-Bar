@@ -102,49 +102,52 @@ display: none;
 
 // Order Confirmation Page
 
+.container-fluid{
+  margin-top: 20vh;
+  color:white;
+  text-align: center;
+}
+
 .confirmation-wrapper{
   display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(169, 169, 169, 0.9));
-  width: 90vw;
-  margin: auto;
+  width: 100vw;
+  margin: 0 auto;;
   padding: 10px;
-  border-radius: 10px;
+ 
+
+ 
 
   .wrapper{
-    flex-shrink: 4;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
+   display: flex;
+   flex-direction: column;
     padding: 5px;
-    margin: 15px;
+    margin: 30px 15px;
     width: 100%;
     
     .btn{
       align-self: center;
-      margin: auto;
+      margin: 10px auto 30px auto;
       display: block;
     }
-    a{
-      margin-top: 20px;
-      text-align: center;
-      
-    }
- 
-   
+
   }
 
   .clear{
     background-color: transparent;
+    a{
+      text-align: center;
+      margin: auto;
+    }
   }
- 
-
 
  .form-group{
+   margin: auto;
    text-align: center;
-   width: 40vw;
+   width: 80vw;
  }
   input{
     height: 7rem;
@@ -160,14 +163,28 @@ display: none;
 
   }
 .confirmation-table{
+  
+  align-items: center;
   background-color: white;
-  width: 80vw;
+  width: 90vw;
   margin: auto;
   text-align: justify;
   
- table{
-  overflow-x:auto;
+
+
+ .table-responsive{
+   
+ margin: auto;
+  padding: 40px;
+  width: 90vw;
+  border-collapse: collapse;
  }
+
+ table, th, td {
+   
+  border-bottom: 1px solid black;
+}
+
   
 
   h1{
@@ -176,23 +193,26 @@ display: none;
 
   tr{
     margin: 5px;
-    padding: 15px;
+    padding: 5px;
+    
   }
 
   td{
-padding:15px;
+    
+padding:5px;
   }
   thead{
     th{
-      padding:15px;
+      padding:10px;
           }
   }
   tfoot{
     th{
-      padding:15px;
+      padding:10px;
     }
   }
 }
+
 }
 
 
