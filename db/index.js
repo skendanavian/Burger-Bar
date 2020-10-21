@@ -145,13 +145,14 @@ const getOwnerPhone = function(db, orderId) {
 /* LOGIN/REGISTER */
 
 const getUserWithEmail = function(db, email) {
-
+  console.log(email);
   const values = [email];
   return db.query(`
   SELECT users.*
   FROM users
   WHERE users.email = $1;
   `, values).then(res => {
+    console.log('Res Rows Length', res.rows.length)
     return res.rows.length ? res.rows[0] : null;
   });
 

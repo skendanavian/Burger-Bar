@@ -7,7 +7,7 @@ INSERT INTO users (first_name, surname, phone, email, password, is_owner) VALUES
 ('Billy', 'Owner', '800-500-0100', 'owner@example.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', true);
 
 INSERT INTO users (first_name, surname, phone, email, password) VALUES
-('Kevin', 'Kent', '800-500-0200', 'kevin@example.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.'),
+('Kevin', 'Kent', '800-500-0200', 'kevin@example.com', 'password'),
 ('Greg', 'Gregerson', '800-500-0300', 'greg@example.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.'),
 ('Aaron', 'Carter', '800-500-0400', 'aaron@example.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.'),
 ('Kyle', 'Smith', '800-500-0500', 'kyle@example.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.'),

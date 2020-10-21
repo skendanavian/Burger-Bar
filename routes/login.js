@@ -16,23 +16,20 @@ module.exports = (db) => {
    * @param {String} password encrypted
    */
   const login =  function(email, password) {
-    console.log(':::::::::::::::IN LOGIN::::')
-    return getUserWithEmail(db, email)           //implement get user with email
+    return getUserWithEmail(db, email)
     .then(user => {
-      console.log('::::::::::: IN USER LOOKUP THEN::::', )
-      console.log('HUH?',bcrypt.compareSync(password, user.password))
       if (bcrypt.compareSync(password, user.password)) {
-        console.log('::::::::::: USER VALIDATES ::::')
         return user;
       }
       return null;
     });
   }
-  exports.login = login;                        //what is this?
 
   router.post('/', (req, res) => {
-    const {email, password} = req.body;
-    console.log('::::::::::::::IN ROUTE:::');
+    const { login: loginData } = req.body;
+    const email = loginData[0];
+    const password = loginData[1];
+
     login(email, password)
       .then(user => {
         if (!user) {
@@ -41,7 +38,6 @@ module.exports = (db) => {
         }
         req.session.userId = user.id;
         res.redirect('order');
-        // res.send({user: {name: user.name, email: user.email, id: user.id}});
       })
       .catch(e => res.send(e));
   });
