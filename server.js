@@ -30,7 +30,14 @@ app.use("/styles", sass({
   debug: true,
   outputStyle: 'expanded'
 }));
+
+// set up cookies
+const cookieSession = require('cookie-session');
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1']
+}));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
