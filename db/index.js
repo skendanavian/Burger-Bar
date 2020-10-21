@@ -10,7 +10,7 @@ const getMenu = function(db) {
 
 /* KITCHEN RUNNER */
 
-const getIncompleteOrders = function (db) {
+const getIncompleteOrders = function(db) {
   return db.query(`
   SELECT  orders.id as order_id,
           orders.created_at,
@@ -45,7 +45,7 @@ const getPhoneForOrder = function(db, orderId) {
   `, [orderId]);
 }
 
-const setOrderStatus = function (db, orderId, status) {
+const setOrderStatus = function(db, orderId, status) {
   return db.query(`
   UPDATE orders
   SET status = $2
@@ -100,7 +100,8 @@ WHERE orders.id = ${orderId}
 GROUP BY orders.id, users.first_name, users.surname, menu_items.name, users.phone, order_items.quantity, menu_items.price
 order by orders.id;
 `);
-}
+};
+
 
 const getOrderPrice = function(db, orderId) {
   return db.query(`
@@ -112,7 +113,19 @@ const getOrderPrice = function(db, orderId) {
   Where orders.id = ${orderId}
   GROUP BY orders.id, users.id;
 `);
-}
+};
+
+const getTotalItems = function(db, orderId) {
+  return db.query(
+    `SELECT  orders.id AS order_id
+    ,SUM(order_items.quantity) AS quantity_of_items
+FROM orders
+JOIN order_items
+ON orders.id = order_items.order_id
+WHERE orders.id = ${orderId}
+GROUP BY  orders.id`
+  );
+};
 
 
 
@@ -125,6 +138,7 @@ module.exports = {
   getIncompleteOrders,
   setOrderStatus,
   getPhoneForOrder,
+  getTotalItems
 };
 
 

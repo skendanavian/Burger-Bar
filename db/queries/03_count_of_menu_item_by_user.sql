@@ -10,3 +10,5 @@ ON order_items.menu_item_id = menu_items.id
 WHERE menu_items.name = 'Fries'
 group by users.first_name
 order by SUM(order_items.quantity) DESC;
+
+

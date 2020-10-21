@@ -1,7 +1,7 @@
 const express = require('express');
-const { sendSms } = require('../api');
-const { getIncompleteOrders, setOrderStatus, getPhoneForOrder } = require('../db');
-const router  = express.Router();
+const {sendSms} = require('../api');
+const {getIncompleteOrders, setOrderStatus, getPhoneForOrder} = require('../db');
+const router = express.Router();
 
 module.exports = (db) => {
 
@@ -24,8 +24,8 @@ module.exports = (db) => {
       });
 
       incompleteOrderItems.forEach(item => {
-        const { order_id, order_item_id } = item;
-        const { order_items } = orders[order_id];
+        const {order_id, order_item_id} = item;
+        const {order_items} = orders[order_id];
 
         order_items[order_item_id] = {
           menu_item_name: item.menu_item_name,
@@ -33,12 +33,12 @@ module.exports = (db) => {
         };
       });
 
-      response.render("kitchen", { orders });
+      response.render("kitchen", {orders});
     });
   });
 
   router.post('/:orderId/complete', (req, response) => {
-    const { orderId } = req.params;
+    const {orderId} = req.params;
 
     setOrderStatus(db, orderId, 'completed').then(
       response.redirect('/kitchen')
@@ -49,7 +49,7 @@ module.exports = (db) => {
   });
 
   router.post('/:orderId/ready', (req, response) => {
-    const { orderId } = req.params;
+    const {orderId} = req.params;
 
     getPhoneForOrder(db, orderId).then(res => {
       const phone = res.rows[0].phone;

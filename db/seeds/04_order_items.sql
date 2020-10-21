@@ -1,6 +1,6 @@
 DELETE from order_items;
 
-ALTER SEQUENCE order_item_id_seq RESTART;
+ALTER SEQUENCE order_items_id_seq RESTART;
 
 INSERT INTO order_items (order_id, menu_item_id, quantity)
 VALUES
