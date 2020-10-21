@@ -18,7 +18,7 @@ const formatOrderItems = (rows) => {
       outputOrders.push({
         order_id: item.order_id,
         created_at: item.created_at,
-        description: item.descriptio,
+        description: item.description,
         status: item.status,
         first_name: item.first_name,
         surname: item.surname,
