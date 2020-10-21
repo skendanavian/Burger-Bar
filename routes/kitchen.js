@@ -1,6 +1,7 @@
 const express = require('express');
-const { sendSms } = require('../api');
-const { getIncompleteOrders, setOrderStatus, getPhoneForOrder } = require('../db');
+const {formatOrderItems} = require('../helpers');
+const {sendSms} = require('../api');
+const {getIncompleteOrders, setOrderStatus, getPhoneForOrder} = require('../db');
 const router = express.Router();
 
 module.exports = (db) => {
@@ -8,48 +9,13 @@ module.exports = (db) => {
   router.get('/', (req, response) => {
 
     getIncompleteOrders(db).then(res => {
-      const incompleteOrderItems = res.rows;
-      const orders = {};
-
-
-      for (item of incompleteOrderItems) {
-        console.log(item.order_id, item.created_at, item.status);
-      }
-
-      /* fill top level template vars obj */
-      incompleteOrderItems.forEach(item => {
-        orders[ item.order_id ] = {
-          created_at: item.created_at,
-          description: item.description,
-          status: item.status,
-          first_name: item.first_name,
-          surname: item.surname,
-          phone: item.phone,
-          order_items: {}
-        };
-      });
-
-      /* add menu items */
-      incompleteOrderItems.forEach(item => {
-        const { order_id, order_item_id } = item;
-        const { order_items } = orders[ order_id ];
-
-        order_items[ order_item_id ] = {
-          menu_item_name: item.menu_item_name,
-          quantity: item.quantity
-        };
-      });
-
-      for (item in orders) {
-        console.log('vars', item, orders[ item ].created_at, orders[ item ].status);
-      }
-
-      response.render("kitchen", { orders });
+      const orders = formatOrderItems(res.rows);
+      response.render("kitchen", {orders});
     });
   });
 
   router.post('/:orderId/complete', (req, response) => {
-    const { orderId } = req.params;
+    const {orderId} = req.params;
 
     setOrderStatus(db, orderId, 'completed').then(
       response.redirect('/kitchen')
@@ -60,7 +26,7 @@ module.exports = (db) => {
   });
 
   router.post('/:orderId/ready', (req, response) => {
-    const { orderId } = req.params;
+    const {orderId} = req.params;
 
     getPhoneForOrder(db, orderId).then(res => {
       const phone = res.rows[ 0 ].phone;
