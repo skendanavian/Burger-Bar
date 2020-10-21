@@ -70,11 +70,11 @@
                   <div>
                     <% for (item of Object.values(order.order_items)) { %>
                       <h4><%= item.menu_item_name %>: x<%= item.quantity %></h4>
-                      <% } %>
-                    </div>
+                    <% } %>
                   </div>
-                  <% if (order.description) { %>
-                    <h5><%= order.description %></h5>
+                </div>
+                <% if (order.description) { %>
+                  <h5><%= order.description %></h5>
                 <% } %>
                 <form action="kitchen/<%= order.order_id %>/complete" method="POST">
                   <button type='submit' class='btn btn-primary btn-block'>Completed</button>
