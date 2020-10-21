@@ -35,13 +35,13 @@ const formatOrderItems = (rows) => {
 }
 
 const estimateOrderTime = function(num, ownerPhone) {
-  let estimateMsg = 'Your order will be ready in '
+  let estimateMsg = 'Your order will be ready in approximately '
   if (num < 4) {
     estimateMsg += `20 minutes.`;
   } else if (num < 10) {
     estimateMsg += `${Math.round((num * 6) / 5) * 5} minutes.`;
   } else {
-    return `Please call our store (${ownerPhone}) for an estimated pickup time.`;
+    return `Your order may take up to an hour. Please call our store at (${ownerPhone}) for an accurate pickup time.`;
   }
   return estimateMsg;
 
@@ -50,11 +50,12 @@ const estimateOrderTime = function(num, ownerPhone) {
 const renderOrderSms = function(orderItems, orderId) {
   const firstName = orderItems[0].first_name;
   const lastName = orderItems[0].last_name;
-  let message = `New Order For ${firstName} ${lastName}. Order #${orderId}. Order Details: `
+  let message = `Order #${orderId}\nCustomer: ${firstName} ${lastName}\nOrder details:\n`
 
-  for (let item in orderItems) {
-    message += ` [${item.menu_item} - quantity: ${item.quantity}] `;
+  for (let item of orderItems) {
+    message += `\[${item.menu_item} - quantity: ${item.quantity}\] \n`;
   }
+  return message;
 };
 
 module.exports = {

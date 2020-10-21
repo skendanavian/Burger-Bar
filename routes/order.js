@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {sendSms} = require('../api/index');
-const {getMenu, addOrder, addOrderItems, getOrder, getOrderPrice, getTotalItems, setOrderStatus, getPhoneForOrder} = require('../db');
+const {getMenu, addOrder, addOrderItems, getOrder, getOrderPrice, getTotalItems, setOrderStatus, setOrderDesc, getOwnerPhone} = require('../db');
 const {estimateOrderTime, renderOrderSms} = require('../helpers');
 
 
@@ -57,43 +57,43 @@ module.exports = (db) => {
 
   router.post('/:orderId/confirmation', (req, response) => {
     const orderId = req.params.orderId;
+    const orderDescription = req.body.description
+    console.log('This is the text box', req.body.description)
+    const ownerPhone = getOwnerPhone(db, orderId);
+    const setDescription = setOrderDesc(db, orderId, orderDescription)
     const orderStatus = setOrderStatus(db, orderId, 'confirmed');
     const totalItems = getTotalItems(db, orderId);
     const itemList = getOrder(db, orderId);
 
-    Promise.all([totalItems, itemList, orderStatus]).then(values => {
+    Promise.all([totalItems, itemList, orderStatus, setDescription, ownerPhone]).then(values => {
       console.log('orderitems', values[0].rows)
       console.log('itemList', values[1].rows)
 
 
       const numOfItems = values[0].rows[0].quantity_of_items;
-      const orderTime = estimateOrderTime(numOfItems);
       const orderInfo = values[1].rows;
+      const ownerPhone = values[4].rows[0].owner_phone;
 
+      const orderTime = estimateOrderTime(numOfItems, ownerPhone);
       const userName = orderInfo[0].first_name;
       const userMsg = `Hey ${userName}! Thanks for ordering from Burger Bar. ${orderTime}.`;
       const userPhone = orderInfo[0].phone;
-      /* DO NOT DELETE - SMS FUNCTIONALITY
-      sendSms(userMsg, userPhone); */
+
+      // DO NOT DELETE - SMS FUNCTIONALITY
+      // sendSms(userMsg, userPhone);
 
       const ownerMsg = renderOrderSms(orderInfo, orderId);
-      /* DO NOT DELETE - SMS FUNCTIONALITY
-      sendSms(ownerMsg, ownerPhone); */
-      console.log(numOfItems);
-      //call calculate order time
-      // estimateOrderTime
-      //get customer and user phone number
-      response.redirect('/');
+
+      // DO NOT DELETE - SMS FUNCTIONALITY
+      // sendSms(ownerMsg, ownerPhone);
+
+      response.render('index');
 
     }).catch((err) => {
       console.log(err);
       response.status(500).send(err);
     });
   });
-
-
-
-
   return router;
 };
 

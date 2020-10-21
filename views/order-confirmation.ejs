@@ -75,22 +75,20 @@
                 <th scope="col"></th>
                 <th scope="col">$<%=(orderPrice[0].total_price/100).toFixed(2)%>
                 </th>
-  
               </tr>
-              
             </tfoot>
           </tbody>   
-          <form method="POST" action="/order/<%=orderItems[0].order_id%>/confirmation">
+          <form method="POST" action="/order/<%=orderItems[0].order_id%>/confirmation" >
         </table>
         <div class="wrapper clear">
         
           <div class="form-group">
             <label for="comment">Special Instructions</label>
-            <textarea class="form-control" rows="5" id="comment"></textarea>
+            <textarea class="form-control" rows="5" id="description" name="description"></textarea>
           </div>
           <div class="wrapper clear">
             <!-- Load custom thankyou page on confirm? -->
-          <button type="/" class="btn">Confirm Order</button>
+          <button type="submit" class="btn">Confirm Order</button>
           <!-- Redirect to Orders Page -->
           <a href="order">Back To Order Form</a>
           
