@@ -1,6 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const { parsePhoneNumber } = require('libphonenumber-js/max');
+const { parsePhoneNumber } = require('libphonenumber-js/min');
 const router  = express.Router();
 const { getUserWithEmail, register } = require('../db');
 
@@ -32,7 +32,7 @@ const validateRegisterData = (data) => {
   // the catch block is only for when an error occurs during parsing
   // the phone wouldn't be valid anyway
   try {
-    const parsedPhone = parsePhoneNumber(phone, 'US');
+    const parsedPhone = parsePhoneNumber(phone, 'CA');
     if(!parsedPhone.isValid()) {
       errorMsgs.push('Please enter a valid phone number.');
     }
@@ -81,7 +81,7 @@ module.exports = (db) => {
         response.render("register", { userId, isOwner, errorMsgs });
       } else {
 
-        const formattedPhone = parsePhoneNumber(phone, 'US').number;
+        const formattedPhone = parsePhoneNumber(phone, 'CA').number;
         const data = {
           firstName,
           lastName,
