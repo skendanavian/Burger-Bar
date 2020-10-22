@@ -19,7 +19,7 @@
     ></script>
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <title>Burger Bar || Order Reciept</title>
+    <title>Burger Bar || Order Receipt</title>
   </head>
 
   <body>
@@ -28,12 +28,12 @@
     <main>
       <section class="menu-container container-fluid">
         <h1>Thanks <%=orderInfo[0].first_name%>! </h1>
-       
-        
+
+
       </section>
-      
+
 <div class="confirmation-wrapper">
-  <h4>Order Reciept</h4>
+  <h4>Order Receipt</h4>
 </br>
   <p>Order ID: #<%=orderInfo[0].order_id%></p>
   <p>Number of Items: <%=numOfItems%></p>
@@ -42,13 +42,13 @@
 <p>You will receive order updates via text message at ph: <%=orderInfo[0].phone%></p>
 
 
-      
+
           <div class="wrapper clear">
             <!-- Load custom thankyou page on confirm? -->
           <!-- <button type="submit" class="btn">Logout</button> -->
           <!-- Redirect to Orders Page -->
           <a class="btn" href="/logout">logout</a>
-          
+
         </div>
       </div>
     </main>
