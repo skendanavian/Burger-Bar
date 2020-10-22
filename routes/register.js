@@ -1,6 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const phoneUtil = require('google-libphonenumber');
+const { parsePhoneNumber } = require('libphonenumber-js/max');
 const router  = express.Router();
 const { getUserWithEmail, register } = require('../db');
 
@@ -28,14 +28,22 @@ const validateRegisterData = (data) => {
     errorMsgs.push('Please enter a valid email address.');
   }
 
-  // if (!phoneUtil.isPossibleNumber(phone)) {
-  //   errorMsgs.push('Please enter a valid phone number.');
-  // }
+  // phone library is being weird, a one digit number throws an error during parsing
+  // the catch block is only for when an error occurs during parsing
+  // the phone wouldn't be valid anyway
+  try {
+    const parsedPhone = parsePhoneNumber(phone, 'US');
+    if(!parsedPhone.isValid()) {
+      errorMsgs.push('Please enter a valid phone number.');
+    }
+  } catch {
+    errorMsgs.push('Please enter a valid phone number.');
+  }
 
   if(password.length < 6) {
     errorMsgs.push('Your password is too short! Please enter one at least 6 characters long.');
   }
-
+  console.log(errorMsgs);
   return errorMsgs;
 }
 
@@ -56,6 +64,7 @@ module.exports = (db) => {
   router.post('/', (req, response) => {
     const {firstName, lastName, email, phone, password} = req.body;
     const { userId, isOwner } = req.session;
+
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     const errorMsgs = validateRegisterData(req.body);
@@ -68,10 +77,18 @@ module.exports = (db) => {
 
       if (res !== null) {
         response.statusCode = 400;
-        errorMsgs.push('User with this email already exists.')
+        errorMsgs.push('User with this email already exists. Please try another.')
         response.render("register", { userId, isOwner, errorMsgs });
       } else {
-        const data = {firstName, lastName, email, phone, hashedPassword};
+
+        const formattedPhone = parsePhoneNumber(phone, 'US').number;
+        const data = {
+          firstName,
+          lastName,
+          email,
+          phone: formattedPhone,
+          hashedPassword
+        };
         register(db, data).then(res => {
           const {user_id, is_owner} = res.rows[0];
           req.session.userId = user_id;
