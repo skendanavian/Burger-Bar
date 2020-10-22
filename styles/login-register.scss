@@ -95,17 +95,18 @@ main {
         background-color: lightseagreen;
         border: white 5px;
         &:hover {
-          background-color: rgb(42, 153, 147);
+          background-color: rgb(48, 207, 199);
           cursor: pointer;
         }
+       
       }
     }
   }
 }
 
+
 @media only screen and (max-width: 475px) {
 
-  
   main {
    
 .hero {
@@ -119,11 +120,14 @@ main {
     margin-bottom: 10vh;
   main .hero .content #formContent form input{
     font-size: 10px;
-    
   }
 }
 }
   
+}
+
+a{
+  font-size: 1rem;
 }
 
 .mobile-hide{
@@ -131,6 +135,10 @@ main {
 }
 .main-footer{
   display: none;
+}
+
+main .hero .content #formContent .user-container p {
+  font-size: 1rem;
 }
 
 }

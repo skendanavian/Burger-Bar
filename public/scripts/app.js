@@ -12,13 +12,18 @@
 
 $(document).ready(() => {
 
-$('#dropdown-menu').click((event) => {
-  $('.drop-down').slideToggle();
-});
+  $('#dropdown-menu').click((event) => {
+    $('.drop-down').slideToggle();
+  });
 
 
 
-  
+
+
+
+
+
+
 
 
 

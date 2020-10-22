@@ -13,7 +13,21 @@
   height: 16vh;
   padding: 0;
   align-items: center;
+  
 
+}
+
+#logout-btn{
+ padding:8px;
+  border-radius:10px;
+  margin-left:10px;
+  background-color: rgba(224, 157, 0, 0.661);
+  &:hover{
+    background:rgba(224, 157, 0, 0.812);
+  }
+  
+  
+  
 
 }
 
@@ -41,10 +55,10 @@ display: none;
   .nav-title {
     color: #333;
 
-    &:hover {
-      cursor: pointer;
-      opacity: 80%;
-    }
+    // &:hover {
+    //   cursor: pointer;
+    //   opacity: 80%;
+    // }
 
     h2{
       margin-bottom: 6px;
@@ -241,7 +255,7 @@ padding:5px;
 
 // Changes orders/menu to flex columns on small devices
 
-@media only screen and (max-width: 475px) {
+@media only screen and (max-width: 600px) {
   .container .title-box p {
   display: none;
   }
@@ -254,7 +268,7 @@ padding:5px;
   main .hero .content .btn-container .btn {
     display: block;
   }
-.menu-item  {
+  main .menu-container .menu-item  {
 flex-direction: column;
 justify-content: center;
 align-items: center;
@@ -281,7 +295,7 @@ text-align: center;
 
 //Small Devices - Adds Hamburger/Drop Down to Nav and changes flex direction to column.
 
-@media only screen and (min-width: 780px){
+@media only screen and (min-width: 1000px){
   .container .fa-bars{
   display: none;
   }

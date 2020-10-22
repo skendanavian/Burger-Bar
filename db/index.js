@@ -153,11 +153,10 @@ const getUserWithEmail = function(db, email) {
   `, values).then(res => {
     return res.rows.length ? res.rows[0] : null;
   });
-
 };
 
 const register = function(db, data) {
-  const { firstName, lastName, phone, email, hashedPassword } = data;
+  const {firstName, lastName, phone, email, hashedPassword} = data;
   console.log(data);
   return db.query(`
   INSERT INTO users (

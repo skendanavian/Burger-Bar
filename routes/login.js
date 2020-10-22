@@ -1,7 +1,7 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const bcrypt = require('bcrypt');
-const { getUserWithEmail } = require('../db');
+const {getUserWithEmail} = require('../db');
 
 
 module.exports = (db) => {
@@ -10,23 +10,23 @@ module.exports = (db) => {
     res.render("login");
   });
 
-    /**
-   * Check if a user exists with a given username and password
-   * @param {String} email
-   * @param {String} password encrypted
-   */
-  const login =  function(email, password) {
+  /**
+ * Check if a user exists with a given username and password
+ * @param {String} email
+ * @param {String} password encrypted
+ */
+  const login = function(email, password) {
     return getUserWithEmail(db, email)
-    .then(user => {
-      if (bcrypt.compareSync(password, user.password)) {
-        return user;
-      }
-      return null;
-    });
+      .then(user => {
+        if (bcrypt.compareSync(password, user.password)) {
+          return user;
+        }
+        return null;
+      });
   }
 
   router.post('/', (req, res) => {
-    const { login: loginData } = req.body;
+    const {login: loginData} = req.body;
     const email = loginData[0];
     const password = loginData[1];
 
@@ -44,3 +44,5 @@ module.exports = (db) => {
 
   return router;
 };
+
+
