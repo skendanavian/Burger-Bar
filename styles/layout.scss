@@ -119,9 +119,6 @@ display: none;
   margin: 0 auto;;
   padding: 10px;
  
-
- 
-
   .wrapper{
    display: flex;
    flex-direction: column;
@@ -163,6 +160,7 @@ display: none;
     padding-bottom: 5px;
 
   }
+
 .confirmation-table{
   
   align-items: center;
@@ -244,8 +242,8 @@ padding:5px;
 // Changes orders/menu to flex columns on small devices
 
 @media only screen and (max-width: 475px) {
-  .container .title-box i {
- display:none;
+  .container .title-box p {
+  display: none;
   }
 
   main .menu-container .menu-item img{
@@ -284,7 +282,7 @@ text-align: center;
 //Small Devices - Adds Hamburger/Drop Down to Nav and changes flex direction to column.
 
 @media only screen and (min-width: 780px){
-  .container .fa-bars {
+  .container .fa-bars{
   display: none;
   }
 
@@ -294,7 +292,6 @@ display: flex;
 ul{
   display: flex;
   list-style-type: none;
-
 
 a{
   font-size: 18px;
@@ -313,15 +310,12 @@ margin-top: 10px;
   }
   
 }
-
-    
+ 
   }
 
   .drop-down{
   display: none;
   }
-
- 
 
 
 }
