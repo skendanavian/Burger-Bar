@@ -91,6 +91,7 @@ display: none;
 .text-dark {
   color: #333;
   font-weight: 400;
+  
 }
 
 .footer-copyright {
@@ -165,7 +166,7 @@ display: none;
 .confirmation-table{
   
   align-items: center;
-  background-color: white;
+  background-color: rgba(224, 157, 0, 0.7);
   width: 90vw;
   margin: auto;
   text-align: justify;
@@ -219,14 +220,37 @@ padding:5px;
 //Footer Layout
 
 .footer-copyright {
-  margin-top: 18vh;
-  background-color: white;
+  margin-top: 10vh;
+  padding-top: 3vh;
+  background-color: rgba(255,255,255,0.9);
   color: #333;
+
+  p{
+    margin-top:20px;
+  }
 }
+
+//override style on h1
+.h1-overide{
+  color: white;
+  padding: 3rem;
+      text-align: center;
+      font-size: 2.5rem;
+}
+//overide for text on menu page.
+.menu-item{text-align: justify}
+
+
+// Changes orders/menu to flex columns on small devices
 
 @media only screen and (max-width: 475px) {
   .container .title-box i {
  display:none;
+  }
+
+  main .menu-container .menu-item img{
+   
+    margin: 10px auto;
   }
 
   main .hero .content .btn-container .btn {
@@ -237,8 +261,6 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 text-align: center;
-
-
 
 
 .flex-wrapper{
@@ -259,6 +281,8 @@ text-align: center;
  
 }
 
+//Small Devices - Adds Hamburger/Drop Down to Nav and changes flex direction to column.
+
 @media only screen and (min-width: 780px){
   .container .fa-bars {
   display: none;
@@ -270,6 +294,7 @@ display: flex;
 ul{
   display: flex;
   list-style-type: none;
+
 
 a{
   font-size: 18px;

@@ -26,8 +26,10 @@ main {
       border: solid 1px rgb(224, 157, 0);;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.94);
+      text-align: justify;
 
       p {
+      
         padding: 10px 0;
       }
       .media-body {
@@ -52,7 +54,6 @@ main {
  
 }
 h4 {
-  
   color: rgb(224, 157, 0);
 }
 i{
