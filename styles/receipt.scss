@@ -1,0 +1,168 @@
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+    url("https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80"),
+    no-repeat center center/cover;
+  color: #333;
+  
+}
+
+main {
+  .menu-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 18vh;
+    margin-bottom: 5vh;
+    height: 100%;
+    width: 90vw;
+
+
+
+    h1 {
+      color: white;
+      text-align: center;
+      font-size: 3rem;
+    }
+    .menu-item {
+      justify-content: center;
+      align-items: center;
+      margin: 5px 0;
+      border: solid 1px rgb(224, 157, 0);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.94);
+
+      p {
+        padding: 10px 0;
+      }
+      .media-body {
+        margin-top: 20px;
+      }
+      img {
+        margin-left: 10px;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+.wrapper {
+  align-self: center;
+  background-color: white;
+  height: 100%;
+
+  margin: 1vw 5vw;
+  border-radius: 10px;
+  padding: 5vh 5vw;
+ 
+}
+h4 {
+  text-align: center;
+  color: rgb(224, 157, 0);
+}
+i{
+  color: #333;
+}
+
+.menu-item {
+  padding: 1rem;
+  display: flex;
+  flex-shrink: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  img {
+  
+    width: 20vw;
+    margin: 10px 20px;
+    flex-shrink:1;
+  }
+}
+
+.flex-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  div {
+    margin: 2px 5px;
+  }
+  .input-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px 5px;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
+#item-quantity {
+  margin-left: 12px;
+  height: 35px;
+  text-align: center;
+}
+
+#item-selector {
+  margin-left: 12px;
+  margin-right: 5px;
+
+  label {
+    width: 30px;
+  }
+}
+
+li {
+  list-style-type: none;
+}
+
+.row {
+  justify-content: center;
+}
+
+.btn {
+  align-self: center;
+  width: 150px;
+  height: 50px;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background-color: lightseagreen;
+  border: white 5px;
+  &:hover {
+    background-color: rgb(42, 153, 147);
+    color: white;
+    cursor: pointer;
+  }
+}
+
+h5 {
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 475px) {
+.menu-item{
+  flex-direction: column;
+}
+
+#item-selector{
+  margin:auto;
+}
+
+
+}
+
+.receipt-box{
+  h4{
+    font-size: 2rem;
+    padding-top: 2rem;
+    color: rgb(224, 157, 0);
+  }
+p{
+font-size: 1.2rem;
+font-weight: 50000;
+text-align: center;
+}
+}
