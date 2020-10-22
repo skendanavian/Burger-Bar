@@ -43,8 +43,8 @@ const validateRegisterData = (data) => {
 module.exports = (db) => {
 
   router.get('/', (req, res) => {
-    const { userId } =  req.session;
-    res.render("register");
+    const { userId, ownerId } =  req.session;
+    res.render("register", {userId, ownerId, errorMsgs: []});
   });
 
   router.post('/', (req, response) => {
@@ -60,13 +60,15 @@ module.exports = (db) => {
     getUserWithEmail(db, email).then(res => {
 
       if (res !== null) {
+
         response.statusCode = 400;
         errorMsgs.push('User with this email already exists.')
         response.render("register", { userId, ownerId, errorMsgs });
       } else {
 
-        const hashedPassword = bcrypt.hashSync(password, 10);
         const data = {firstName, lastName, email, phone, hashedPassword};
+        const hashedPassword = bcrypt.hashSync(password, 10);
+        const convertPhoneNumberToStandard = phoneUtil.PhoneNumberFormat
         register(db, data).then(res => {
         const { id: user_id } = res.rows[0];
         req.session.user_id = user_id;
