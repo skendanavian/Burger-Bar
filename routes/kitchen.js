@@ -8,7 +8,7 @@ const router = express.Router();
 module.exports = (db) => {
 
   router.get('/', (req, response) => {
-
+    const {userId, isOwner} = req.session;
     getIncompleteOrders(db).then(res => {
 
       const orders = formatOrderItems(res.rows);
@@ -16,11 +16,12 @@ module.exports = (db) => {
         order.created_at = date.format(order.created_at, 'ddd hh:mm A');
         return order;
       });
-      response.render("kitchen", {orders});
+      response.render("kitchen", {orders, userId, isOwner});
     });
   });
 
   router.post('/:orderId/complete', (req, response) => {
+    const {userId, isOwner} = req.session;
     const {orderId} = req.params;
 
     setOrderStatus(db, orderId, 'completed').then(
@@ -32,6 +33,7 @@ module.exports = (db) => {
   });
 
   router.post('/:orderId/ready', (req, response) => {
+    const {userId, isOwner} = req.session;
     const {orderId} = req.params;
 
     getPhoneForOrder(db, orderId).then(res => {

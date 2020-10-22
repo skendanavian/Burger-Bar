@@ -12,9 +12,16 @@
         <li ><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/menu">Menu</a></li>
-        <li><a href="/login">Order</a></li>
+        <li><a href="/order">Order</a></li>
+        <%if (userId) {%>
+        <%if (isOwner) {%>
         <li><a href="/kitchen">Kitchen</a></li>
+        
+        <%}%>
         <li><a id="logout-btn" class="logout-btn text-dark btn-warning fadeIn" href="/logout">Logout</a></li>
+        <%} else {%>
+          <li><a id="logout-btn" class="logout-btn text-dark btn-warning fadeIn" href="/login">Login</a></li>
+          <%}%>
       </ul>
       </div>
   </div>
@@ -26,9 +33,15 @@
       <li><a href="/">Home</a></li>
       <li><a href="/about">About</a></li>
       <li><a href="/menu">Menu</a></li>
-      <li><a href="/login">Order</a></li>
+      <li><a href="/order">Order</a></li>
+      <%if (userId) {%>
+      <%if (isOwner) {%>
       <li><a href="/kitchen">Kitchen</a></li>
+      <%}%>
       <li><a href="/logout">Logout</a></li>
+      <%} else {%>
+        <li><a href="/login">Login</a></li>
+        <%}%>
     </ul>
   </div>
 </footer>

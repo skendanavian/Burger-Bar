@@ -7,7 +7,14 @@ const {getUserWithEmail} = require('../db');
 module.exports = (db) => {
 
   router.get('/', (req, res) => {
-    res.render("login");
+    const {userId, isOwner} = req.session;
+    if (userId && isOwner) {
+      res.redirect('kitchen');
+    } else if (userId) {
+      res.redirect('order')
+    } else {
+      res.render("login", {userId, isOwner});
+    }
   });
 
   /**
@@ -36,8 +43,15 @@ module.exports = (db) => {
           res.send({error: "error"});
           return;
         }
+        console.log(user.is_owner)
         req.session.userId = user.id;
-        res.redirect('order');
+        req.session.isOwner = user.is_owner;
+        const {userId, isOwner} = req.session;
+        if (userId && isOwner) {
+          res.redirect('kitchen');
+        } if (userId) {
+          res.redirect('order');
+        }
       })
       .catch(e => res.send(e));
   });

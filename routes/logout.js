@@ -4,7 +4,8 @@ const router = express.Router();
 module.exports = (db) => {
 
   router.get('/', (req, res) => {
-    //Delete User Cookie
+    req.session = null;
+    const userId = req.session;
     res.redirect('/');
   });
 

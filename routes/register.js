@@ -28,9 +28,9 @@ const validateRegisterData = (data) => {
     errorMsgs.push('Please enter a valid email address.');
   }
 
-  if (!phoneUtil.isPossibleNumber(phone)) {
-    errorMsgs.push('Please enter a valid phone number.');
-  }
+  // if (!phoneUtil.isPossibleNumber(phone)) {
+  //   errorMsgs.push('Please enter a valid phone number.');
+  // }
 
   if(password.length < 6) {
     errorMsgs.push('Your password is too short! Please enter one at least 6 characters long.');
@@ -43,38 +43,47 @@ const validateRegisterData = (data) => {
 module.exports = (db) => {
 
   router.get('/', (req, res) => {
-    const { userId, ownerId } =  req.session;
-    res.render("register", {userId, ownerId, errorMsgs: []});
+    const {userId, isOwner} = req.session;
+    if (userId && isOwner) {
+      res.redirect('kitchen');
+    } else if (userId) {
+      res.redirect('order');
+    } else {
+      res.render("register", {userId, isOwner, errorMsgs: []});
+    }
   });
 
   router.post('/', (req, response) => {
-    const { firstName, lastName, email, phone, password  } = req.body;
-    const { userId, ownerId } = req.session;
+    const {firstName, lastName, email, phone, password} = req.body;
+    const { userId, isOwner } = req.session;
+    const hashedPassword = bcrypt.hashSync(password, 10);
 
     const errorMsgs = validateRegisterData(req.body);
     if (errorMsgs.length) {
       response.statusCode = 400;
-      response.render("register", { userId, ownerId, errorMsgs });
+      response.render("register", { userId, isOwner, errorMsgs });
     }
 
     getUserWithEmail(db, email).then(res => {
 
       if (res !== null) {
-
         response.statusCode = 400;
         errorMsgs.push('User with this email already exists.')
-        response.render("register", { userId, ownerId, errorMsgs });
+        response.render("register", { userId, isOwner, errorMsgs });
       } else {
-
         const data = {firstName, lastName, email, phone, hashedPassword};
-        const hashedPassword = bcrypt.hashSync(password, 10);
-        const convertPhoneNumberToStandard = phoneUtil.PhoneNumberFormat
         register(db, data).then(res => {
-        const { id: user_id } = res.rows[0];
-        req.session.user_id = user_id;
-        response.redirect('order');
-      });
-    }
+          const {user_id, is_owner} = res.rows[0];
+          req.session.userId = user_id;
+          req.session.isOwner = is_owner;
+
+          if (user_id && is_owner) {
+            res.redirect('kitchen');
+          } else if (user_id) {
+            response.redirect('order');
+          }
+        });
+      }
     });
 
 
