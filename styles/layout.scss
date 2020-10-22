@@ -109,6 +109,9 @@ display: none;
 }
 
 .footer-copyright {
+  bottom: 0;
+  width: 100%;
+  position: relative;
   margin-top: 18vh;
   background-color: white;
   color: #333;
@@ -116,6 +119,10 @@ display: none;
     color:
     rgba(234, 164, 0, 0.915);
   }
+}
+
+.denied-gif{
+  margin:auto;
 }
 
 
