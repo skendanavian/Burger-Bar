@@ -41,6 +41,8 @@ main {
   }
 }
 
+
+
 .wrapper {
   align-self: center;
   background-color: white;
@@ -144,8 +146,17 @@ h5 {
   flex-direction: column;
 }
 
-#item-selector{
+#item-selector input{
   margin:auto;
+  
+    // /* Double-sized Checkboxes */
+    // -ms-transform: scale(3); /* IE */
+    // -moz-transform: scale(2); /* FF */
+    // -webkit-transform: scale(3); /* Safari and Chrome */
+    // -o-transform: scale(2); /* Opera */
+    // transform: scale(2);
+    // padding: 10px;
+  
 }
 
 
