@@ -9,6 +9,13 @@ body {
 }
 
 main {
+
+  a{
+    color: rgb(224, 157, 0);
+    &:hover{
+      color:rgb(245, 182, 35);
+    }
+  }
   .container {
     display: flex;
     flex-direction: column;
@@ -26,7 +33,7 @@ main {
 
       .flex-text-container {
         flex-flow: wrap;
-        background-color: white;
+        background-color:white;
         flex-grow: 2;
         display: flex;
         flex-direction: column;
