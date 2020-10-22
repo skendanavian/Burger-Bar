@@ -21,9 +21,9 @@
  padding:8px;
   border-radius:10px;
   margin-left:10px;
-  background-color: rgba(224, 157, 0, 0.661);
+  background-color: rgba(224, 157, 0, 0.812);
   &:hover{
-    background:rgba(224, 157, 0, 0.812);
+    background:rgba(224, 157, 0, 0.887);
   }
   
   
@@ -109,9 +109,20 @@ display: none;
 }
 
 .footer-copyright {
+  bottom: 0;
+  width: 100%;
+  position: relative;
   margin-top: 18vh;
   background-color: white;
   color: #333;
+  .alt-color{
+    color:
+    rgba(234, 164, 0, 0.915);
+  }
+}
+
+.denied-gif{
+  margin:auto;
 }
 
 

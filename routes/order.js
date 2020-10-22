@@ -59,7 +59,8 @@ module.exports = (db) => {
 
       });
     } else {
-      //send error about no page access
+      const errorMessage = null
+      response.render('error-message', {userId, isOwner, errorMessage})
     }
   });
 
@@ -94,17 +95,39 @@ module.exports = (db) => {
       getOrderPrice(db, orderId).then((res) => {
 
         const orderPrice = res.rows;
+
+        //Prevents unauthorized access to order receipts.. deletes orderId cookie upon submit
         if (isOwner || userId && orderId == userOrderId) {
+          req.session.userOrderId = null;
           response.render('order-receipt', {orderInfo, numOfItems, orderPrice, orderTime, userId, isOwner});
         } else {
-          //send error that they can't access this page
+          const errorMessage = 1;
+          response.render('error-message', {userId, isOwner, errorMessage})
         }
       }).catch((err) => {
-        console.log(err);
+        const errorMessage = 1;
+        response.render('error-message', {userId, isOwner, errorMessage})
         response.status(500).send(err);
       });
     });
   });
+
+  //Started writing route so owner can look back at old order receipts. Then realized how many db calls this needs.
+
+  // router.get('/:orderId/:confirmation', (req, response) => {
+  //   const {userId, isOwner} = req.session;
+  //   getMenu(db).then(res => {
+  //     if (userId && isOwner) {
+
+  //     } else {
+  //       const errorMessage = null;
+  //       response.render("error-page", {menuItems, userId, isOwner, errorMessage});
+  //     }
+  //   });
+  // });
+
+
+
   return router;
 };
 

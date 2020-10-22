@@ -16,7 +16,12 @@ module.exports = (db) => {
         order.created_at = date.format(order.created_at, 'ddd hh:mm A');
         return order;
       });
-      response.render("kitchen", {orders, userId, isOwner});
+      if (isOwner) {
+        response.render("kitchen", {orders, userId, isOwner});
+      } else {
+        const errorMessage = null;
+        response.render("error-message", {userId, isOwner, errorMessage})
+      }
     });
   });
 
