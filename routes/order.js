@@ -18,10 +18,10 @@ module.exports = (db) => {
 
   router.post('/', (req, response) => {
     const ownerId = 1;
-    // assign userId to var from cookies
+    const { user_id: userId } = req.session;
     const items = req.body;
     let newOrderId;
-    addOrder(db, {userId: 3, ownerId: 1}).then(res => {
+    addOrder(db, {userId, ownerId: 1}).then(res => {
       newOrderId = res.rows[0].id;
       console.log('this is new order', newOrderId);
       return addOrderItems(db, newOrderId, items);
