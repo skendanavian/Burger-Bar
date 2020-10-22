@@ -27,10 +27,17 @@
 
   
       <section class=" container-fluid">
+        <%if(errorMessage == 1){%>
+<h1 class="h1-overide">There was a problem submitting your order or the order may have already been submitted. Please contact us.</h1>
+        <%} else {%>  
         <h1 class="h1-overide">Whoops - You don't have access to this page</h1>
         <div class="container">
+          <%if(errorMessage) {%>
+          <h4><%=errorMessage%></h4>
+          <%} else {%>
           <img class="denied-gif" src="https://media.giphy.com/media/l2JJKs3I69qfaQleE/giphy.gif" alt="Star Wars Gif">
-      
+          <%}%>
+          <%}%>
         </div>
         <main>
         

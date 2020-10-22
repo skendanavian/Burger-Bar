@@ -19,7 +19,8 @@ module.exports = (db) => {
       if (isOwner) {
         response.render("kitchen", {orders, userId, isOwner});
       } else {
-        response.render("error-message", {userId, isOwner, })
+        const errorMessage = null;
+        response.render("error-message", {userId, isOwner, errorMessage})
       }
     });
   });
