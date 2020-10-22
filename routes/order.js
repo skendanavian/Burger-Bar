@@ -18,7 +18,7 @@ module.exports = (db) => {
 
   router.post('/', (req, response) => {
     const ownerId = 1;
-    const { user_id: userId } = req.session;
+    const { userId } = req.session;
     const items = req.body;
     let newOrderId;
     addOrder(db, {userId, ownerId: 1}).then(res => {
