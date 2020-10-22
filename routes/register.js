@@ -34,10 +34,10 @@ const validateRegisterData = (data) => {
   try {
     const parsedPhone = parsePhoneNumber(phone, 'CA');
     if(!parsedPhone.isValid()) {
-      errorMsgs.push('Please enter a valid phone number.');
+      errorMsgs.push('Please enter a valid phone number with area code.');
     }
   } catch {
-    errorMsgs.push('Please enter a valid phone number.');
+    errorMsgs.push('Please enter a valid phone number with area code.');
   }
 
   if(password.length < 6) {
