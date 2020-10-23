@@ -266,6 +266,7 @@ padding:5px;
 .menu-item{text-align: justify}
 
 
+
 // Changes orders/menu to flex columns on small devices
 
 @media only screen and (max-width: 600px) {
@@ -276,6 +277,13 @@ padding:5px;
   main .menu-container .menu-item img{
    
     margin: 10px auto;
+  }
+
+  div .menu-item {
+    margin:auto;
+    flex-direction:column;
+    
+    text-align: center;
   }
 
   main .hero .content .btn-container .btn {
@@ -289,7 +297,9 @@ text-align: center;
 
 
 .flex-wrapper{
-  flex-direction: column;
+
+ 
+ 
 }
 .container-fluid{
   flex-direction: column;
