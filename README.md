@@ -14,38 +14,40 @@ The core of Burger Bar is built with the Node, Express and PostgreSQL. The templ
 
 
 ## Project Photos
-<div style="width: 100%" >
+---
+<p align='center'>Home</p>
 <p align="center">
-![“Home”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="350">
-</p>
-<p align="center">
-![“Home-Mobile/Tablet”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomeResponsive.png?raw=true" height="350">
-</p>
-<p align="center">
-![“Home”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="350">
-</p>
-<p align="center">
-![“Home”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="350">
-</p>
-<p align="center">
-![“Home”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="350">
-</p>
-<p align="center">
-![“Home”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="350">
+<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="300">
+<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomeResponsive.png?raw=true" height="300">
 </p>
 
-!["Menu"](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/MenuPage.png?raw=true)
-!["Menu-Mobile/Tablet"](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/MenuResponsive.png?raw=true)
-!["Login"](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/Login.png?raw=true)
-![“Login-Mobile/Tablet”](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/LoginResponsive.png?raw=true)
-!["Orders"](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/OrderPage.png?raw=true)
-!["Kitchen-Runner"](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/Kitchen.png?raw=true)
-
-</div>
-
-<p align='center'>
-  <img src="https://github.com/dpletzke/tweeter/blob/master/docs/view-desktop.png?raw=true" height="350">
+---
+<p align='center'>Menu</p>
+<p align="center">
+<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/MenuPage.png?raw=true" height="300">
+<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/MenuResponsive.png?raw=true" height="300">
 </p>
+
+---
+<p align='center'>Login</p>
+<p align="center">
+<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/Login.png?raw=true" height="300">
+<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/LoginResponsive.png?raw=true" height="300">
+</p>
+
+---
+<p align='center'>Kitchen</p>
+<p align="center">
+<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/Kitchen.png?raw=true" height="400">
+</p>
+
+---
+<p align='center'>Orders</p>
+<p align="center">
+<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/OrderPage.png?raw=true" height="400">
+</p>
+
+
 ---
 ## Getting Started
 
@@ -65,7 +67,6 @@ echo "TWILIO_PHONE_NUMBER='<your twilio phone number>'" >> .env
 4. Install dependencies: `npm i`
 5. Fix to binaries for sass: `npm rebuild node-sass`
 6. Reset database: `npm run db:reset`
-    - Check the db folder to see what gets created and seeded in the SDB
 7. Run the server: `npm run local`
     - Note: nodemon is used, so you should not have to restart your server
 8. Visit `http://localhost:8080/`
