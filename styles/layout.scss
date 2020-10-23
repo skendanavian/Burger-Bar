@@ -49,11 +49,13 @@ display: none;
     }
   }
   
-  .title-box > a {
+  .nav-title{
     color: #333;
+    padding-bottom: 2px;
     
     &:hover {
-       
+       text-decoration-line: underline;
+       text-decoration-color: rgb(224, 157, 0) ;
       cursor: pointer;
       
       

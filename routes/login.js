@@ -13,7 +13,7 @@ module.exports = (db) => {
     } else if (userId) {
       res.redirect('order')
     } else {
-      res.render("login", {userId, isOwner});
+      res.render("login", {userId, isOwner, errorMsgs: []});
     }
   });
 
@@ -25,22 +25,36 @@ module.exports = (db) => {
   const login = function(email, password) {
     return getUserWithEmail(db, email)
       .then(user => {
-        if (bcrypt.compareSync(password, user.password)) {
+
+        if (!user) {
+          return null;
+        } else if (bcrypt.compareSync(password, user.password)) {
           return user;
+        } else {
+          return null;
         }
-        return null;
+
       });
   }
 
-  router.post('/', (req, res) => {
-    const {login: loginData} = req.body;
-    const email = loginData[0];
-    const password = loginData[1];
+  router.post('/', (req, response) => {
+    const {email, password} = req.body;
+    const {userId, isOwner} = req.session;
+    const errorMsgs = [];
+
+    if (!email || !password) {
+      errorMsgs.push('Fill in the whole form!');
+      response.render('login', {userId, isOwner, errorMsgs});
+    }
 
     login(email, password)
       .then(user => {
-        if (!user) {
-          res.send({error: "error"});
+        console.log('login page::::::', user);
+        if (user === null) {
+          console.log('AM I HERE:::::::::::');
+          // errorMsgs.push('User not found!');
+          console.log(userId, isOwner, errorMsgs);
+          response.render('login', {userId, isOwner, errorMsgs: ['Did I print?']});
           return;
         }
         console.log(user.is_owner)
@@ -48,12 +62,12 @@ module.exports = (db) => {
         req.session.isOwner = user.is_owner;
         const {userId, isOwner} = req.session;
         if (userId && isOwner) {
-          res.redirect('kitchen');
+          response.redirect('kitchen');
         } if (userId) {
-          res.redirect('order');
+          response.redirect('order');
         }
       })
-      .catch(e => res.send(e));
+      .catch(e => response.send(e));
   });
 
   return router;

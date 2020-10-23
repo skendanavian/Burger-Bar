@@ -12,38 +12,18 @@
 
 $(document).ready(() => {
 
+
+  //dropdown nav for mobile
   $('#dropdown-menu').click((event) => {
     $('.drop-down').slideToggle();
   });
 
-  $('#order-submit-btn').submit(function() {
-    checked = $("input[type=checkbox]:checked").length;
-    if (!checked) {
-      alert("You must check at least one checkbox.");
-      return false;
-    }
-  });
+  //error message display for login/register
+  if ($('.error').length) {
+    console.log('it exists')
 
-
-  $('input[type="checkbox"]').click(function() {
-    if ($(this).is(":checked")) {
-      console.log("Checkbox is checked.");
-    }
-    else if ($(this).is(":not(:checked)")) {
-      console.log("Checkbox is unchecked.");
-    }
-  });
-
-
-  $('#order-submit-btn').submit(function(e) {
-    //check atleat 1 checkbox is checked
-    if (!$('.online-order-form').is(':checked')) {
-      //prevent the default form submit if it is not checked
-      // e.preventDefault();
-      alert('There are no menu items selected')
-    }
-  })
-
+    $('#error-messages').slideDown();
+  }
 
 });
 

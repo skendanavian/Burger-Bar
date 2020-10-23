@@ -31,16 +31,17 @@
         <div class="content">
           <h1 class="mobile-hide">We Love New Friends!</h1>
           <div class="wrapper">
+           
             <div id="formContent">
               <!-- Tabs Titles -->
-
+              
               <!-- Icon -->
              <div class="user-container">
                <i class="fas fa-user fa-2x"></i>
                <p>Create Account</p>
              </div>
-
-
+             <%- include('./partials/_error'); %>
+             
               <!-- Register Form -->
               <form class="Login" action="/register" method="POST">
                 <input type="firstname" id="first-name" class="input-box form-control " name="firstName" placeholder="first name">
@@ -48,8 +49,8 @@
                 <input type="email" id="email" class="input-box form-control" name="email" placeholder="email">
                 <input type="tel" id="phone" class="input-box form-control" name="phone" placeholder="cell phone (sms)">
                 <input type="password" id="password" class="input-box form-control" name="password" placeholder="password">
-                <%- include('./partials/_error'); %>
-                <input type="submit" class="btn btn-light fadeIn" value="Submit">
+                
+                <input type="submit" class="#login-btn btn btn-light fadeIn" value="Submit">
               </form>
             </div>
           </div>

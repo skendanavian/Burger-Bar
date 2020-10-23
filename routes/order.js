@@ -26,9 +26,7 @@ module.exports = (db) => {
     const {userId, isOwner} = req.session;
     const items = req.body;
 
-    console.log(req.body);
     const emptyCheck = Object.values(items).every(val => !Array.isArray(val));
-    console.log(emptyCheck);
     if (emptyCheck) {
       const errorMessage = 2;
       getMenu(db).then(res => {

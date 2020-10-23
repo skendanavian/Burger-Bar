@@ -151,6 +151,7 @@ const getUserWithEmail = function(db, email) {
   FROM users
   WHERE users.email = $1;
   `, values).then(res => {
+
     return res.rows.length ? res.rows[0] : null;
   });
 };
