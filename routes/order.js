@@ -13,7 +13,8 @@ module.exports = (db) => {
       //mentor note - implement ejs to handle errors, null data etc
       const menuItems = res.rows;
       if (userId) {
-        response.render("order", {menuItems, userId, isOwner});
+        const errorMessage = null;
+        response.render("order", {menuItems, userId, isOwner, errorMessage});
       } else {
         response.redirect('login')
       }
@@ -24,6 +25,17 @@ module.exports = (db) => {
   router.post('/', (req, response) => {
     const {userId, isOwner} = req.session;
     const items = req.body;
+
+    console.log(req.body);
+    const emptyCheck = Object.values(items).every(val => !Array.isArray(val));
+    console.log(emptyCheck);
+    if (emptyCheck) {
+      const errorMessage = 2;
+      getMenu(db).then(res => {
+        const menuItems = res.rows;
+        response.render("order", {menuItems, userId, isOwner, errorMessage});
+      });
+    };
 
     let newOrderId;
     addOrder(db, {userId, ownerId: 1}).then(res => {
@@ -37,6 +49,7 @@ module.exports = (db) => {
       console.log(err);
       response.status(500).send(err);
     });
+
   });
 
 
@@ -48,6 +61,7 @@ module.exports = (db) => {
 
     if (userOrderId == orderId) {
       getOrder(db, orderId).then((res) => {
+
         orderItems = res.rows;
         getOrderPrice(db, orderId).then((res) => {
           orderPrice = res.rows;

@@ -14,8 +14,9 @@
   padding: 0;
   align-items: center;
   
+  }
 
-}
+
 
 #logout-btn{
  padding:8px;
@@ -25,10 +26,6 @@
   &:hover{
     background:rgba(224, 157, 0, 0.887);
   }
-  
-  
-  
-
 }
 
 .container {
@@ -51,14 +48,17 @@ display: none;
       padding-bottom: 11px;
     }
   }
-
-  .nav-title {
+  
+  .title-box > a {
     color: #333;
-
-    // &:hover {
-    //   cursor: pointer;
-    //   opacity: 80%;
-    // }
+    
+    &:hover {
+       
+      cursor: pointer;
+      
+      
+    }
+   
 
     h2{
       margin-bottom: 6px;

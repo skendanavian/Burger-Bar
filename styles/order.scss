@@ -141,6 +141,11 @@ h5 {
   font-weight: 300;
 }
 
+.center-text{
+margin-top: 10px;
+  text-align: center;
+  color: rgb(224, 157, 0);
+}
 @media only screen and (max-width: 475px) {
 .menu-item{
   flex-direction: column;

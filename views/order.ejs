@@ -30,12 +30,15 @@
         <h1>Order For Pickup</h1>
       </section>
       <div class="wrapper">
-        <form action="order" method="POST">
+        <form class='online-order-form' action="order" method="POST">
           <ul class="order-items">
             <h4 class="text-dark">Menu</h4>
+            <%if(errorMessage === 2) {%>
+              <p class="center-text">Please select at least one item to place an order.</p>
+              <%}%>
             <br />
             <hr />
-          
+            
             <% for(let item of menuItems) { %>
             <li>
               <div class="menu-item">
@@ -69,7 +72,7 @@
             <% } %>
           </ul>
           <div class="row">
-            <button type="submit" class="btn">Submit Order</button>
+            <button id="order-submit-btn" type="submit" class="btn">Submit Order</button>
           </div>
         </form>
       </div>
