@@ -46,18 +46,13 @@ module.exports = (db) => {
       errorMsgs.push('Fill in the whole form!');
       response.render('login', {userId, isOwner, errorMsgs});
     }
-
     login(email, password)
       .then(user => {
-        console.log('login page::::::', user);
         if (!user) {
-          console.log('AM I HERE:::::::::::');
           errorMsgs.push('User not found!');
-          console.log(userId, isOwner, errorMsgs);
-          response.render('login', {userId, isOwner, errorMsgs});
+          response.render('login', {userId: null, isOwner: null, errorMsgs});
           return;
         }
-        console.log(user.is_owner)
         req.session.userId = user.id;
         req.session.isOwner = user.is_owner;
         const {userId, isOwner} = req.session;
