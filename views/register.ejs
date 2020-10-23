@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="/styles/login-register.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css">
+    <link rel="stylesheet" href="/styles/error.css" type="text/css">
     <script src="https://kit.fontawesome.com/93be37909b.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -29,11 +30,6 @@
       <div class="hero">
         <div class="content">
           <h1 class="mobile-hide">We Love New Friends!</h1>
-          <p>
-            <% for (msg of errorMsgs) { %>
-              <p><%= msg %></p>
-            <% } %>
-          </p>
           <div class="wrapper">
             <div id="formContent">
               <!-- Tabs Titles -->
@@ -52,6 +48,7 @@
                 <input type="email" id="email" class="input-box form-control" name="email" placeholder="email">
                 <input type="tel" id="phone" class="input-box form-control" name="phone" placeholder="cell phone (sms)">
                 <input type="password" id="password" class="input-box form-control" name="password" placeholder="password">
+                <%- include('./partials/_error'); %>
                 <input type="submit" class="btn btn-light fadeIn" value="Submit">
               </form>
             </div>
