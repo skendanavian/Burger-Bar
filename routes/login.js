@@ -46,12 +46,11 @@ module.exports = (db) => {
       errorMsgs.push('Fill in the whole form!');
       response.render('login', {userId, isOwner, errorMsgs});
     }
-
     login(email, password)
       .then(user => {
         if (!user) {
           errorMsgs.push('User not found!');
-          response.render('login', {userId, isOwner, errorMsgs});
+          response.render('login', {userId: null, isOwner: null, errorMsgs});
           return;
         }
         req.session.userId = user.id;
