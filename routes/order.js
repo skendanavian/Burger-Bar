@@ -42,7 +42,6 @@ module.exports = (db) => {
       return addOrderItems(db, newOrderId, items);
     }).then((res) => {
       req.session.userOrderId = newOrderId;
-      console.log(req.session.userOrderId)
       response.redirect(`order/${newOrderId}`);
     }).catch((err) => {
       console.log(err);

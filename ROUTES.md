@@ -17,7 +17,6 @@ POST: (/order)
 GET:  (/order/:orderid)
 POST: (/order/:orderid/confirmation)
 
-
 # Kitchen Routes
 GET: (/kitchen)
 POST: (/kitchen/:orderId/complete)

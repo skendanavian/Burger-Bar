@@ -49,15 +49,11 @@ module.exports = (db) => {
 
     login(email, password)
       .then(user => {
-        console.log('login page::::::', user);
         if (!user) {
-          console.log('AM I HERE:::::::::::');
           errorMsgs.push('User not found!');
-          console.log(userId, isOwner, errorMsgs);
           response.render('login', {userId, isOwner, errorMsgs});
           return;
         }
-        console.log(user.is_owner)
         req.session.userId = user.id;
         req.session.isOwner = user.is_owner;
         const {userId, isOwner} = req.session;
