@@ -54,6 +54,10 @@ module.exports = (db) => {
 
   router.get('/', (req, res) => {
     const {userId, isOwner} = req.session;
+
+    /* if logged in as an owner, go to kitchen */
+    /* if logged in as a user, go to order page */
+    /* if not logged in, go to register page */
     if (userId && isOwner) {
       res.redirect('kitchen');
     } else if (userId) {

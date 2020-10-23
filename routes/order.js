@@ -20,6 +20,7 @@ module.exports = (db) => {
     });
   });
 
+
   //Sends order to DB and redirects to a confirm order page
 
   router.post('/', (req, response) => {

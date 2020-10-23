@@ -40,7 +40,6 @@ app.use(cookieSession({
 }));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
 const aboutRoutes = require("./routes/about");
 const kitchenRoutes = require("./routes/kitchen");
 const menuRoutes = require("./routes/menu");
@@ -50,7 +49,6 @@ const registerRoutes = require("./routes/register");
 const logoutRoutes = require("./routes/logout");
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 app.use("/about", aboutRoutes(db));
 app.use("/kitchen", kitchenRoutes(db));
 app.use("/menu", menuRoutes(db));
@@ -59,7 +57,7 @@ app.use("/login", loginRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/logout", logoutRoutes(db));
 
-// Note: mount other resources here, using the same pattern above
+
 
 
 // Home page
