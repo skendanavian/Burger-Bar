@@ -1,17 +1,52 @@
-LHL Node Skeleton
-=========
+Burger Bar
+=======
+## Introduction
 
-## Project Setup
+Burger bar is a webapp for Lighthouse Labs developed by Daniel Pletzke and Soren Nissen. The project functions as the midterm for the program bringing together the concepts learned so far of front-end, back-end and database management.
 
-The following steps are only for _one_ of the group members to perform.
+## Functionality
 
-1. Create your own copy of this repo using the `Use This Template` button, ideally using the name of your project. The repo should be marked Public
-2. Verify that the skeleton code now shows up in your repo on GitHub, you should be automatically redirected
-3. Clone your copy of the repo to your dev machine
-4. Add your team members as collaborators to the project so that they can push to this repo
-5. Let your team members know the repo URL so that they use the same repo (they should _not_ create a copy/fork of this repo since that will add additional workflow complexity to the project)
+Customers can view a menu, login and order food. The customer will then be texted an estimated time for pickup and the restaurant owner will be notified via text of the new order. The kitchen staff will then receive a display of the new order on a kitchen runner page which displays the current orders, orders just received and orders ready for pickup. Once the food is ready the kitchen staff will update the order on the webapp which will then notify the user that their food is ready. Once the user has paid, the restaurant staff will then complete the order on the webapp which will maintain it in the database for record keeping.
+
+## Development Details
+
+The core of Burger Bar is built with the Node, Express and PostgreSQL. The templating engine is EJS. Further functionality is extended with the Twilio texting API. Various Node packages are utilized for user authentication and security including cookie-session and bcrypt. Phone number input is parsed and validated with a [fork](https://github.com/catamphetamine/libphonenumber-js/) of [google/libphonenumber](https://github.com/google/libphonenumber), minimized and written in javascript.
 
 
+## Project Photos
+<div style="width: 100%" >
+<p align="center">
+![“Home”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="350">
+</p>
+<p align="center">
+![“Home-Mobile/Tablet”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomeResponsive.png?raw=true" height="350">
+</p>
+<p align="center">
+![“Home”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="350">
+</p>
+<p align="center">
+![“Home”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="350">
+</p>
+<p align="center">
+![“Home”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="350">
+</p>
+<p align="center">
+![“Home”]<img src="https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/HomePage.png?raw=true" height="350">
+</p>
+
+!["Menu"](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/MenuPage.png?raw=true)
+!["Menu-Mobile/Tablet"](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/MenuResponsive.png?raw=true)
+!["Login"](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/Login.png?raw=true)
+![“Login-Mobile/Tablet”](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/LoginResponsive.png?raw=true)
+!["Orders"](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/OrderPage.png?raw=true)
+!["Kitchen-Runner"](https://github.com/skendanavian/lighthouse_midterm/blob/master/docs/Kitchen.png?raw=true)
+
+</div>
+
+<p align='center'>
+  <img src="https://github.com/dpletzke/tweeter/blob/master/docs/view-desktop.png?raw=true" height="350">
+</p>
+---
 ## Getting Started
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
@@ -19,25 +54,38 @@ The following steps are only for _one_ of the group members to perform.
   - username: `labber` 
   - password: `labber` 
   - database: `midterm`
-3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Reset database: `npm run db:reset`
-  - Check the db folder to see what gets created and seeded in the SDB
+3. Follow [this Quickstart guide](https://www.twilio.com/docs/sms/quickstart/node) for setting up a Twilio trial account. You'll need to add some fields into your `.env` file.
+4. Run the following commands with your information from twilio.
+```bash
+echo "TWILIO_ACCOUNT_SID='<your information>'" >> .env
+echo "TWILIO_AUTH_TOKEN='<your token>'" >> .env
+echo "TWILIO_PHONE_NUMBER='<your twilio phone number>'" >> .env
+```
+
+4. Install dependencies: `npm i`
+5. Fix to binaries for sass: `npm rebuild node-sass`
+6. Reset database: `npm run db:reset`
+    - Check the db folder to see what gets created and seeded in the SDB
 7. Run the server: `npm run local`
-  - Note: nodemon is used, so you should not have to restart your server
+    - Note: nodemon is used, so you should not have to restart your server
 8. Visit `http://localhost:8080/`
-
-## Warnings & Tips
-
-- Do not edit the `layout.css` file directly, it is auto-generated by `layout.scss`
-- Split routes into their own resource-based file names, as demonstrated with `users.js` and `widgets.js`
-- Split database schema (table definitions) and seeds (inserts) into separate files, one per table. See `db` folder for pre-populated examples. 
-- Use the `npm run db:reset` command each time there is a change to the database schema or seeds. 
-  - It runs through each of the files, in order, and executes them against the database. 
-  - Note: you will lose all newly created (test) data each time this is run, since the schema files will tend to `DROP` the tables and recreate them.
 
 ## Dependencies
 
-- Node 10.x or above
+- Node 10.x or above   
 - NPM 5.x or above
 - PG 6.x
+- bcrypt 5.x or above
+- body-parser 1.19.x or above
+- chalk 2.4.x or above
+- cookie-session 1.4.x or above
+- date-and-time 0.14 or above
+- dotenv 2.x or above 
+- ejs 2.6.x or above
+- express 4.17.x or above
+- libphonenumber-js 1.8.x or above
+- morgan 1.9.x or above
+- node-sass-middleware 0.11.x or above
+- pg6.4.2 6.4.x or above
+- pg-native 3.x or above
+- twilio 3.50.x or above
