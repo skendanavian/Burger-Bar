@@ -1,5 +1,6 @@
 # REST ROUTES
 
+## Info Pages
 GET: (/) - Root Index
 GET: (/menu) 
 GET: (/about)
