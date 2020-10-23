@@ -50,11 +50,11 @@ module.exports = (db) => {
     login(email, password)
       .then(user => {
         console.log('login page::::::', user);
-        if (user === null) {
+        if (!user) {
           console.log('AM I HERE:::::::::::');
-          // errorMsgs.push('User not found!');
+          errorMsgs.push('User not found!');
           console.log(userId, isOwner, errorMsgs);
-          response.render('login', {userId, isOwner, errorMsgs: ['Did I print?']});
+          response.render('login', {userId, isOwner, errorMsgs});
           return;
         }
         console.log(user.is_owner)
@@ -67,7 +67,10 @@ module.exports = (db) => {
           response.redirect('order');
         }
       })
-      .catch(e => response.send(e));
+      .catch(e => {
+        response.send(e);
+        return;
+      });
   });
 
   return router;

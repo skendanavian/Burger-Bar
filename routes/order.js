@@ -10,7 +10,6 @@ module.exports = (db) => {
   router.get('/', (req, response) => {
     const {userId, isOwner} = req.session;
     getMenu(db).then(res => {
-      //mentor note - implement ejs to handle errors, null data etc
       const menuItems = res.rows;
       if (userId) {
         const errorMessage = null;
@@ -21,6 +20,7 @@ module.exports = (db) => {
     });
   });
 
+  //Sends order to DB and redirects to a confirm order page
 
   router.post('/', (req, response) => {
     const {userId, isOwner} = req.session;
@@ -50,6 +50,7 @@ module.exports = (db) => {
 
   });
 
+  //Order Confirmation Page
 
   router.get('/:orderId', (req, response) => {
     const {userId, isOwner, userOrderId} = req.session;
@@ -76,6 +77,7 @@ module.exports = (db) => {
     }
   });
 
+  //Finalize Order and update DB for restaurant. Send SMS Notifcations to owner/customer
 
   router.post('/:orderId/confirmation', (req, response) => {
     const {userId, isOwner, userOrderId} = req.session;
@@ -108,7 +110,7 @@ module.exports = (db) => {
 
         const orderPrice = res.rows;
 
-        //Prevents unauthorized access to order receipts.. deletes orderId cookie upon submit
+        //Prevents unauthorized access to order receipts.
         if (isOwner || userId && orderId == userOrderId) {
           req.session.userOrderId = null;
           response.render('order-receipt', {orderInfo, numOfItems, orderPrice, orderTime, userId, isOwner});
@@ -123,21 +125,6 @@ module.exports = (db) => {
       });
     });
   });
-
-  //Started writing route so owner can look back at old order receipts. Then realized how many db calls this needs.
-
-  // router.get('/:orderId/:confirmation', (req, response) => {
-  //   const {userId, isOwner} = req.session;
-  //   getMenu(db).then(res => {
-  //     if (userId && isOwner) {
-
-  //     } else {
-  //       const errorMessage = null;
-  //       response.render("error-page", {menuItems, userId, isOwner, errorMessage});
-  //     }
-  //   });
-  // });
-
 
 
   return router;

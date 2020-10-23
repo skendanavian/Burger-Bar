@@ -28,9 +28,9 @@ const validateRegisterData = (data) => {
     errorMsgs.push('Please enter a valid email address.');
   }
 
-  // phone library is being weird, a one digit number throws an error during parsing
   // the catch block is only for when an error occurs during parsing
-  // the phone wouldn't be valid anyway
+  // there is a known bug where a one digit phone number throws an error
+  // the phone number wouldn't be valid anyway
   try {
     const parsedPhone = parsePhoneNumber(phone, 'CA');
     if (!parsedPhone.isValid()) {

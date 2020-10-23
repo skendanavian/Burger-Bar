@@ -1,4 +1,5 @@
 /* MENU */
+
 const getMenu = function(db) {
   return db.query(`
   SELECT *
@@ -55,7 +56,6 @@ const setOrderStatus = function(db, orderId, status) {
 /* ORDER */
 
 const addOrder = function(db, ids) {
-  // Take in userId, ownerId, items, db
   const {userId, ownerId} = ids;
   return db.query(`
   INSERT INTO orders (user_id, owner_id) VALUES ($1, $2)
@@ -151,7 +151,6 @@ const getUserWithEmail = function(db, email) {
   FROM users
   WHERE users.email = $1;
   `, values).then(res => {
-
     return res.rows.length ? res.rows[0] : null;
   });
 };
@@ -171,9 +170,6 @@ const register = function(db, data) {
   ) RETURNING users.id AS user_id;
   `, [firstName, lastName, phone, email, hashedPassword]);
 }
-
-
-
 
 
 module.exports = {

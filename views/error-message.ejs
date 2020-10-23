@@ -21,14 +21,11 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
     <title>Burger Bar || Page Not Available</title>
   </head>
-
   <body>
     <header><%- include('./partials/_navbar'); %></header>
-
-  
       <section class=" container-fluid">
-        <%if(errorMessage == 1){%>
-<h1 class="h1-overide">There was a problem submitting your order or the order may have already been submitted. Please contact us.</h1>
+        <%if(errorMessage === 1){%>
+        <h1 class="h1-overide">There was a problem submitting your order or the order may have already been submitted. Please contact us.</h1>
         <%} else {%>  
         <h1 class="h1-overide">Whoops - You don't have access to this page</h1>
         <div class="container">
@@ -39,18 +36,11 @@
           <%}%>
           <%}%>
         </div>
-        <main>
-        
-      </section>
-      
-<div class="confirmation-wrapper">
-  <h4>These are not the burgers you are looking for!</h4>
-  
-     
-        
-    
-      </div>
-       
+         <main>  
+         </section>
+        <div class="confirmation-wrapper">
+        <h4>These are not the burgers you are looking for!</h4>
+        </div> 
       </div>
     </main>
     <footer><%- include('./partials/_footer'); %></footer>
