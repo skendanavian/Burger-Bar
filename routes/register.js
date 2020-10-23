@@ -24,7 +24,7 @@ const validateRegisterData = (data) => {
 
   const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   const isValidEmail = emailPattern.test(email);
-  if (email && !isValidEmail) {
+  if(email && !isValidEmail) {
     errorMsgs.push('Please enter a valid email address.');
   }
 
@@ -33,7 +33,7 @@ const validateRegisterData = (data) => {
   // the phone number wouldn't be valid anyway
   try {
     const parsedPhone = parsePhoneNumber(phone, 'CA');
-    if (!parsedPhone.isValid()) {
+    if(phone && !parsedPhone.isValid()) {
       errorMsgs.push('Please enter a valid phone number with area code.');
     }
   } catch {
